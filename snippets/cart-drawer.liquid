@@ -7,9 +7,11 @@
 
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'cart-recommendations.css' | asset_url | stylesheet_tag }}
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'cart-recommendations.js' | asset_url }}" defer="defer"></script>
 
 <style>
   .drawer {
@@ -447,6 +449,13 @@
           <div id="CartDrawer-CartErrors" role="alert"></div>
         </form>
       </cart-drawer-items>
+
+      {%- if cart != empty -%}
+        <cart-recommendations class="cart-drawer__recommendations">
+          {%- render 'cart-recommendations-list', limit: 3 -%}
+        </cart-recommendations>
+      {%- endif -%}
+
       <div class="drawer__footer">
         {%- if settings.show_cart_note -%}
           <details id="Details-CartDrawer">
