@@ -1,0 +1,380 @@
+{% comment %}
+  Slideshow-Desktop Section
+  - Keine erzwungene Aspect-Ratio
+  - Bilder in Originalhöhe (max. 1100px Breite)
+  - Ganze Section ausgeblendet bei < 750px
+  - Slider mit Pfeilen (< >) und Bullets in der Mitte
+  - Optional Autoplay
+{% endcomment %}
+
+<section id="SlideshowDesktop-{{ section.id }}" class="SlideshowDesktop-Section" aria-label="{{ section.settings.accessibility_info }}">
+  
+  <style>
+    /* =========================================
+       1) Container anpassen, Ratio-Regeln
+          übersteuern, Bilder max 1100px
+       ========================================= */
+    #SlideshowDesktop-{{ section.id }} {
+      padding: 0 !important;
+      margin: 0 auto !important;
+      max-width: 1100px !important; /* Container max. 1100px */
+      width: auto !important;       
+      position: relative;           /* Für absolute Nav-Positionierung, wenn gewünscht */
+    }
+
+    /* Slides im DOM versteckt, nur das aktive Slide wird sichtbar */
+    #SlideshowDesktop-{{ section.id }} .SlideshowDesktop__slide {
+      display: none;
+      width: auto !important;
+      height: auto !important;
+      margin: 0 auto !important;
+    }
+
+    /* Das aktuell aktive Slide zeigen */
+    #SlideshowDesktop-{{ section.id }} .SlideshowDesktop__slide.is-active {
+      display: block !important;
+    }
+
+    /* Bilder: nur so groß wie nötig, Original-Höhe */
+    #SlideshowDesktop-{{ section.id }} .SlideshowDesktop__slide img {
+      display: block !important;
+      margin: 0 auto !important;
+      width: auto !important;
+      max-width: 1100px !important;
+      height: auto !important;
+      object-fit: none !important;  /* Keine Beschneidung */
+    }
+
+    /* Section bei < 750px ausblenden */
+    @media (max-width: 749px) {
+      #SlideshowDesktop-{{ section.id }} {
+        display: none !important;
+      }
+    }
+
+    /* =========================================
+       2) Navigation mit Pfeilen und Bullets
+       ========================================= */
+    .SlideshowDesktop-Nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .SlideshowDesktop-Nav__arrow,
+    .SlideshowDesktop-Nav__bullet {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    /* Pfeil-Buttons (< und >) */
+    .SlideshowDesktop-Nav__arrow {
+      font-size: 20px;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+    }
+
+    /* Bullets-Container: horizontale Anordnung */
+    .SlideshowDesktop-Nav__bullets {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Bullets: runde Punkte */
+    .SlideshowDesktop-Nav__bullet {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #ccc; /* inaktiv */
+    }
+    /* Aktives Bullet (gefüllt) */
+    .SlideshowDesktop-Nav__bullet.is-active {
+      background-color: #000; /* aktiv -> schwarz */
+    }
+
+    /* Autoplay-Pause-Button als Textlink oder Button */
+    .SlideshowDesktop-Nav__pause {
+      margin-left: 15px;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 4px 8px;
+    }
+
+  </style>
+
+  <!-- 
+    3) Slider-Container mit allen Slides
+  -->
+  <div class="SlideshowDesktop-Inner" aria-live="polite">
+    {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+        <div class="SlideshowDesktop__slide" 
+             id="SlideshowDesktop__slide--{{ section.id }}--{{ forloop.index0 }}"
+             data-slide-index="{{ forloop.index0 }}"
+             aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
+        >
+          {% if block.settings.image != blank %}
+            <img 
+              src="{{ block.settings.image | image_url: width: 1100 }}"
+              alt="{{ block.settings.heading | escape }}"
+            >
+          {% else %}
+            <div style="text-align:center; background:#eee; padding:20px;">
+              Kein Bild gewählt
+            </div>
+          {% endif %}
+
+          {%- if block.settings.show_text_box -%}
+            <div style="text-align: {{ block.settings.text_alignment }}; margin-top: 10px;">
+              {%- if block.settings.heading -%}
+                <h2>{{ block.settings.heading }}</h2>
+              {%- endif -%}
+              {%- if block.settings.subheading -%}
+                <p>{{ block.settings.subheading }}</p>
+              {%- endif -%}
+             
+            </div>
+          {%- endif -%}
+
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <!-- 
+    4) Navigation: Pfeil-Buttons und Bullets 
+  -->
+  {% if section.blocks.size > 1 %}
+    <div class="SlideshowDesktop-Nav">
+      <!-- Linker Pfeil -->
+      <button type="button" class="SlideshowDesktop-Nav__arrow SlideshowDesktop-Nav__prev" 
+              aria-label="Previous slide">
+        &#10094;  <!-- HTML-Entity für "<" (Pfeil links) -->
+      </button>
+
+      <!-- Bullets -->
+      <div class="SlideshowDesktop-Nav__bullets">
+        {% for block in section.blocks %}
+          <button type="button" 
+                  class="SlideshowDesktop-Nav__bullet"
+                  data-slide-bullet="{{ forloop.index0 }}"
+                  aria-label="Slide {{ forloop.index }}">
+          </button>
+        {% endfor %}
+      </div>
+
+      <!-- Rechter Pfeil -->
+      <button type="button" class="SlideshowDesktop-Nav__arrow SlideshowDesktop-Nav__next"
+              aria-label="Next slide">
+        &#10095;  <!-- HTML-Entity für ">" (Pfeil rechts) -->
+      </button>
+
+      <!-- Optional: Autoplay-Pause/Resume -->
+      {% if section.settings.auto_rotate %}
+        <button type="button" class="SlideshowDesktop-Nav__pause">
+          Pause
+        </button>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <!-- 
+    5) Primitive JS für Slider + Bullets
+  -->
+  <script>
+    (function() {
+      var sectionId = "{{ section.id }}";
+      var container = document.getElementById("SlideshowDesktop-" + sectionId);
+      if(!container) return;
+      
+      var slides = container.querySelectorAll(".SlideshowDesktop__slide");
+      var prevBtn = container.querySelector(".SlideshowDesktop-Nav__prev");
+      var nextBtn = container.querySelector(".SlideshowDesktop-Nav__next");
+      var bulletBtns = container.querySelectorAll(".SlideshowDesktop-Nav__bullet");
+      var pauseBtn = container.querySelector(".SlideshowDesktop-Nav__pause");
+
+      if(!slides.length) return;
+      var currentIndex = 0;
+      slides[currentIndex].classList.add("is-active");
+
+      // Markiere erstes Bullet direkt
+      if (bulletBtns.length) bulletBtns[0].classList.add("is-active");
+
+      // Zeigt Slide #newIndex und aktualisiert Bullets
+      function showSlide(newIndex) {
+        if(newIndex < 0) newIndex = slides.length - 1;
+        if(newIndex >= slides.length) newIndex = 0;
+
+        // Altes Slide verstecken
+        slides[currentIndex].classList.remove("is-active");
+        slides[currentIndex].setAttribute("aria-hidden", "true");
+
+        // Neues Slide anzeigen
+        currentIndex = newIndex;
+        slides[currentIndex].classList.add("is-active");
+        slides[currentIndex].setAttribute("aria-hidden", "false");
+
+        // Bullets updaten
+        bulletBtns.forEach(function(b){ b.classList.remove("is-active"); });
+        bulletBtns[currentIndex].classList.add("is-active");
+      }
+
+      // Pfeil-Buttons
+      if(prevBtn) {
+        prevBtn.addEventListener("click", function() {
+          showSlide(currentIndex - 1);
+        });
+      }
+      if(nextBtn) {
+        nextBtn.addEventListener("click", function() {
+          showSlide(currentIndex + 1);
+        });
+      }
+
+      // Bullets-Klick
+      bulletBtns.forEach(function(bullet) {
+        bullet.addEventListener("click", function() {
+          var idx = parseInt(bullet.getAttribute("data-slide-bullet"), 10);
+          showSlide(idx);
+        });
+      });
+
+      // Auto-Rotate
+      var autoRotate = {{ section.settings.auto_rotate | json }};
+      var rotateSpeed = {{ section.settings.change_slides_speed | times: 1000 }};
+      var rotateInterval;
+      
+      function startAutoRotate() {
+        if(!autoRotate || !rotateSpeed) return;
+        rotateInterval = setInterval(function() {
+          showSlide(currentIndex + 1);
+        }, rotateSpeed);
+      }
+      function stopAutoRotate() {
+        clearInterval(rotateInterval);
+        rotateInterval = null;
+      }
+
+      if(autoRotate) {
+        startAutoRotate();
+        if(pauseBtn) {
+          pauseBtn.addEventListener("click", function() {
+            if(rotateInterval) {
+              stopAutoRotate();
+              pauseBtn.textContent = "Weiter";
+            } else {
+              startAutoRotate();
+              pauseBtn.textContent = "Pause";
+            }
+          });
+        }
+      }
+    })();
+  </script>
+
+</section>
+
+{% schema %}
+{
+  "name": "Slideshow-Desktop",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "label": "Automatisch abspielen",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "change_slides_speed",
+      "label": "Wechselgeschwindigkeit (Sek.)",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "accessibility_info",
+      "label": "Barrierefreiheit-Info",
+      "default": "Slideshow über unser Angebot"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Bild"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_text_box",
+          "label": "Textfeld anzeigen?",
+          "default": true
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Mein Titel",
+          "label": "Titel"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "subheading",
+          "default": "Untertitel",
+          "label": "Untertitel"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "Mehr erfahren",
+          "label": "Button-Text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button-Link"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text-Ausrichtung",
+          "options": [
+            { "value": "left", "label": "Links" },
+            { "value": "center", "label": "Zentriert" },
+            { "value": "right", "label": "Rechts" }
+          ],
+          "default": "center"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slideshow-Desktop (mit Pfeilen & Bullets)",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

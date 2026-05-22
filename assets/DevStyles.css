@@ -1,0 +1,312 @@
+.multicolumn-card__image-wrapper--custom-width .media {
+    padding-bottom: 15% !important;
+}
+
+.TrustIconsWithText {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 1fr 1fr;
+  /* margin: 0;
+  margin-bottom: 5px; */
+  margin: 5px 0 !important;
+}
+.TrustIconsWithText--inner {
+  background-color: #f4f4f5;
+  padding: 4px 8px;
+  border-radius: 3px;
+  display: grid;
+  grid-template-columns: 30px auto;
+  align-items: center;
+  grid-gap: 8px;
+  min-height: 46px;
+}
+.TrustIconsWithText--inner img {
+  width: 40px;
+  height: auto;
+}
+.TrustIconsWithText--inner span {
+  font-weight: 300;
+  margin-left: 5px;
+  text-align: left;
+  letter-spacing: 0px;
+  align-self: center;
+  color: #1c1c1c;
+  font-size: 11px;
+  line-height: 1.2em;
+}
+.Benefits-Klarna {
+  margin: 4px -4px;
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.Benefits-Klarna .BenefitItem {
+  margin-bottom: 10px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  border: 1px solid #d3d8d6;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 8px;
+  border-radius: 0;
+}
+.Benefits-Klarna .BenefitItem__Icon {
+  align-self: center;
+  justify-self: center;
+  margin-right: 12px;
+}
+.Benefits-Klarna .BenefitItem__Icon .Icon {
+  fill: none;
+  width: 3em !important;
+  stroke-width: 1px;
+  background: none;
+  display: inline-block;
+  height: unset;
+  pointer-events: none;
+  vertical-align: middle;
+}
+.Benefits-Klarna .BenefitItem__Text {
+  align-self: center;
+  color: #1c1c1c;
+  font-size: 11px;
+  line-height: 1.2em;
+}
+.CustomerTestimonialImg img {
+  border-radius: 100%;
+  object-fit: cover;
+  height: 25px;
+  width: 25px;
+}
+.CustomerTestimonialImg img:last-child {
+  margin-left: -10px;
+  height: 25px;
+  width: 25px;
+}
+.CustomerTestimonialtext p {
+  font-size: 0.7em !important;
+  color: #000 !important;
+  margin: 0;
+}
+.CustomerTestimonialImg img {
+  border-radius: 100%;
+  object-fit: cover;
+  height: 25px;
+  width: 25px;
+}
+.CustomerTestimonialImg img:last-child {
+  margin-left: -10px;
+  height: 25px;
+  width: 25px;
+}
+.CustomerTestimonialtext p {
+  font-size: 0.7em !important;
+  color: #000 !important;
+}
+.product-form {
+  display: grid;
+  grid-row-gap: 16px;
+  row-gap: 6px;
+}
+.CustomerTestimonial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px 0px;
+  background: transparent;
+  margin: 7px 0px;
+  flex-wrap: nowrap;
+}
+.CustomerTestimonialImg {
+  width: 45px;
+  display: flex;
+}
+.Paymenticon {
+  display: flex;
+  justify-content: center;
+}
+.Paymenticon img {
+  max-width: 70%;
+}
+.cart__image img {
+  object-fit: contain;
+  object-position: top;
+}
+.scDiscount input[type="text"] {
+  font-size: 19px;
+}
+.cart-drawer__footer small.tax-note.caption-large {
+  color: #0f6b0f;
+}
+.sc_simple-info__tag span.code-name {
+  font-size: 13px !important;
+}
+.productImageMain {
+    position: absolute;
+    right: 10px;
+    z-index: 2;
+    width: 70px;
+    height: 70px;
+    top: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #c5c5c5;
+}
+.productImageMain img {
+    display: block;
+}
+.product__main-photos .product-main-slide:first-child {
+    position: relative;
+}
+.productImageMain .play-btn {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+.productImageMain .play-btn .arrow-right {
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-right: 12px solid white;
+    transform: rotate(180deg);
+    cursor: pointer;
+}
+.product__main-photos .product-main-slide:not(:first-child) .productImageMain{
+  display: none;
+}
+.popUpMain.hidden{
+  display: none;
+}
+.popUpMain {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #00000069;
+}
+.PopUpHeader {
+    color: white;
+    font-size: 30px;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    z-index: 999;
+    cursor: pointer;
+    transform: scaleX(1.3);
+}
+.PopUpContent {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+    left: 100px;
+    bottom: 100px;
+}
+.PopUpContent video {
+    width: 100%;
+    height: 100%;
+}
+.product-block nav.breadcrumb, .product-single__header--mobile {
+    margin-top: 1rem;
+}
+body.template-index .trustBadgesMain {
+    margin: 0 !important;
+}
+img.cartBarpaymentIcons {
+    margin-top: 10px;
+}
+.PopUpOpener--inner {
+    width: 70px;
+    height: 70px;
+}
+.PopUpOpener--inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.couponCode--inner {
+  display: flex;
+  margin-bottom: 10px;
+  padding: 10px;
+  padding-bottom: 10px;
+  border: 1px dashed #d3d8d6;
+  background-color: #f2f2f2;
+  align-items: center;
+}
+.couponCode--inner img {
+  width: 25px;
+  height: 25px;
+}
+.couponCode--inner span {
+  width: calc(100% - 25px);
+  margin-top: 0px;
+  margin-left: 10px;
+  font-size: 12px;
+  line-height: 15px;
+}
+.couponCode {
+  position: relative;
+}
+.couponCode--message {
+  padding: 3px 10px;
+  font-size: 12px;
+  background-color: #000000df;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  display: none;
+  max-width: 81%;
+  width: 100%;
+  margin: auto;
+  left: 9%;
+}
+.couponCode--inner span p {
+    margin: 0;
+}
+@media (min-width: 767px) {
+  .cl-po--swatch.cl-po--large {
+    width: 104px !important;
+    height: 104px !important;
+  }
+   .couponCode.couponCode--forMobileOnly {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+    .PopUpContent {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    left: 20px;
+    bottom: 20px;
+}
+  .cl-po--swatch.cl-po--large {
+    width: 65px !important;
+    height: 65px !important;
+  }
+  .cl-po--swatch-container {
+    width: calc(100% + 10px);
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+  }
+   .couponCode.couponCode--fordesktopOnly {
+    display: none;
+  }
+}
+
