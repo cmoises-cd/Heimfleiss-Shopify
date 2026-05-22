@@ -1,0 +1,89 @@
+{%- comment -%}
+  Renders a single recommendation row (li) inside the cart drawer.
+
+  Accepts:
+    product (required) — the product to render
+    index   (optional) — used for staggered animation delay (default 0)
+{%- endcomment -%}
+
+{%- assign first_available_variant = product.selected_or_first_available_variant -%}
+{%- assign anim_index = index | default: 0 -%}
+
+<li class="cart-rec" style="--cart-rec-index: {{ anim_index }};">
+  <a href="{{ product.url }}" class="cart-rec__image-link" tabindex="-1" aria-hidden="true">
+    {%- if product.featured_image != blank -%}
+      <img
+        class="cart-rec__image"
+        src="{{ product.featured_image | image_url: width: 200 }}"
+        alt="{{ product.featured_image.alt | escape }}"
+        loading="lazy"
+        width="80"
+        height="80"
+      >
+    {%- endif -%}
+  </a>
+
+  <div class="cart-rec__details">
+    <a href="{{ product.url }}" class="cart-rec__title">
+      {{- product.title | escape -}}
+    </a>
+
+    <div class="cart-rec__price" data-price-target>
+      {{- first_available_variant.price | money -}}
+    </div>
+
+    <div class="cart-rec__controls">
+      {%- if product.has_only_default_variant == false -%}
+        <label class="visually-hidden" for="CartRec-Variant-{{ product.id }}">Variante</label>
+        <div class="cart-rec__select-wrapper">
+          <select
+            id="CartRec-Variant-{{ product.id }}"
+            class="cart-rec__variant-select"
+            data-variant-select
+          >
+            {%- for variant in product.variants -%}
+              <option
+                value="{{ variant.id }}"
+                data-price="{{ variant.price | money }}"
+                {% if variant.available == false %}disabled{% endif %}
+                {% if variant.id == first_available_variant.id %}selected{% endif %}
+              >
+                {{ variant.title }}
+                {%- unless variant.available %} – Ausverkauft{% endunless -%}
+              </option>
+            {%- endfor -%}
+          </select>
+          <span class="cart-rec__select-chevron" aria-hidden="true">
+            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      {%- endif -%}
+
+      <button
+        type="button"
+        class="cart-rec__add-button"
+        data-add-button
+        data-variant-id="{{ first_available_variant.id }}"
+        data-product-id="{{ product.id }}"
+        {% unless first_available_variant.available %}disabled{% endunless %}
+        aria-label="{{ product.title | escape }} hinzufügen"
+      >
+        <span class="cart-rec__add-label">
+          {%- if first_available_variant.available -%}
+            Hinzufügen
+          {%- else -%}
+            Ausverkauft
+          {%- endif -%}
+        </span>
+        <span class="cart-rec__add-icon" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 1V13M1 7H13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="cart-rec__spinner" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</li>

@@ -1,0 +1,259 @@
+{%- comment -%}
+  Renders DIVERSE cart recommendations that are aware of the whole cart.
+
+  Two things drive the picks:
+    A) The CART'S FIRST ITEM decides the base rule (what the customer started
+       building the order around). Categories are grouped by real-life use case
+       (garden, fireplace/cozy, DIY, outdoor/camping):
+
+         akkuschrauber     -> drahtwaren, gewachshaus, komposter, druckspruher
+         dart              -> akkuschrauber, drahtwaren, bestseller
+         drahtwaren        -> akkuschrauber, gewachshaus, schneckenkragen, komposter
+         druckspruher      -> schneckenkragen, gewachshaus, komposter, drahtwaren
+         trolley           -> luftmatratze, wathose, bestseller
+         feuerschale       -> kaminbesteck, gluhweinkocher, kaminschutzgitter
+         gewachshaus       -> schneckenkragen, druckspruher, komposter, drahtwaren
+         gluhweinkocher    -> feuerschale, kaminbesteck, kaminschutzgitter
+         kaminbesteck      -> kaminschutzgitter, feuerschale, gluhweinkocher
+         kaminschutzgitter -> kaminbesteck, feuerschale, gluhweinkocher
+         komposter         -> schneckenkragen, druckspruher, gewachshaus, drahtwaren
+         luftmatratze      -> trolley, wathose, feuerschale
+         schneckenkragen   -> gewachshaus, druckspruher, komposter, drahtwaren
+         toilettensitz     -> bestseller, akkuschrauber, drahtwaren
+         wathose           -> luftmatratze, druckspruher, trolley
+         unknown           -> bestseller, feuerschale, druckspruher, kaminbesteck, schneckenkragen
+
+    B) Every OTHER item in the cart tells us which categories are already
+       covered, so we SKIP those when picking — except the `bestseller`
+       fallback bucket, which is always allowed.
+
+  We also:
+    - Always try to render exactly `limit` items (default 3) by sliding down
+      a fallback list of categories if the wanted one is empty/exhausted.
+    - Skip any product that's already in the cart (no redundant recs).
+    - Skip duplicates inside the recommendation list.
+{%- endcomment -%}
+
+{%- liquid
+  assign max_items = limit | default: 3
+
+  assign cat_akkuschrauber_str    = ',akkuschrauber,'
+  assign cat_dart_str             = ',dartscheiben-beleuchtung,'
+  assign cat_drahtwaren_str       = ',drahtwaren-zubehor,'
+  assign cat_druckspruher_str     = ',druckspruher,'
+  assign cat_trolley_str          = ',einkaufs-trolley,'
+  assign cat_feuerschale_str      = ',feuerschale-1,'
+  assign cat_gewachshaus_str      = ',gewachshaus,'
+  assign cat_gluhweinkocher_str   = ',gluhweinkocher,'
+  assign cat_kaminbesteck_str     = ',kaminbesteck,'
+  assign cat_kaminschutz_str      = ',kaminschutzgitter,'
+  assign cat_komposter_str        = ',komposter-metall,'
+  assign cat_luftmatratze_str     = ',luftmatratze-selbstaufblasend,'
+  assign cat_schneckenkragen_str  = ',schneckenkragen,'
+  assign cat_toilettensitz_str    = ',toillettensitz,'
+  assign cat_wathose_str          = ',wathosen,'
+
+  assign cart_product_ids = ','
+  assign cart_categories  = ','
+  assign source_category  = ''
+  assign cart_index = 0
+
+  for item in cart.items
+    assign cart_product_ids = cart_product_ids | append: item.product.id | append: ','
+
+    assign item_category = ''
+    for c in item.product.collections
+      if item_category != ''
+        break
+      endif
+
+      assign needle = ',' | append: c.handle | append: ','
+
+      if cat_akkuschrauber_str contains needle
+        assign item_category = 'akkuschrauber'
+      elsif cat_dart_str contains needle
+        assign item_category = 'dart'
+      elsif cat_drahtwaren_str contains needle
+        assign item_category = 'drahtwaren'
+      elsif cat_druckspruher_str contains needle
+        assign item_category = 'druckspruher'
+      elsif cat_trolley_str contains needle
+        assign item_category = 'trolley'
+      elsif cat_feuerschale_str contains needle
+        assign item_category = 'feuerschale'
+      elsif cat_gewachshaus_str contains needle
+        assign item_category = 'gewachshaus'
+      elsif cat_gluhweinkocher_str contains needle
+        assign item_category = 'gluhweinkocher'
+      elsif cat_kaminbesteck_str contains needle
+        assign item_category = 'kaminbesteck'
+      elsif cat_kaminschutz_str contains needle
+        assign item_category = 'kaminschutzgitter'
+      elsif cat_komposter_str contains needle
+        assign item_category = 'komposter'
+      elsif cat_luftmatratze_str contains needle
+        assign item_category = 'luftmatratze'
+      elsif cat_schneckenkragen_str contains needle
+        assign item_category = 'schneckenkragen'
+      elsif cat_toilettensitz_str contains needle
+        assign item_category = 'toilettensitz'
+      elsif cat_wathose_str contains needle
+        assign item_category = 'wathose'
+      endif
+    endfor
+
+    if item_category != ''
+      assign cat_marker = ',' | append: item_category | append: ','
+      unless cart_categories contains cat_marker
+        assign cart_categories = cart_categories | append: item_category | append: ','
+      endunless
+
+      if cart_index == 0
+        assign source_category = item_category
+      endif
+    endif
+
+    assign cart_index = cart_index | plus: 1
+  endfor
+
+  if source_product != blank
+    assign source_category_override = ''
+    for c in source_product.collections
+      if source_category_override != ''
+        break
+      endif
+      assign needle = ',' | append: c.handle | append: ','
+      if cat_akkuschrauber_str contains needle
+        assign source_category_override = 'akkuschrauber'
+      elsif cat_dart_str contains needle
+        assign source_category_override = 'dart'
+      elsif cat_drahtwaren_str contains needle
+        assign source_category_override = 'drahtwaren'
+      elsif cat_druckspruher_str contains needle
+        assign source_category_override = 'druckspruher'
+      elsif cat_trolley_str contains needle
+        assign source_category_override = 'trolley'
+      elsif cat_feuerschale_str contains needle
+        assign source_category_override = 'feuerschale'
+      elsif cat_gewachshaus_str contains needle
+        assign source_category_override = 'gewachshaus'
+      elsif cat_gluhweinkocher_str contains needle
+        assign source_category_override = 'gluhweinkocher'
+      elsif cat_kaminbesteck_str contains needle
+        assign source_category_override = 'kaminbesteck'
+      elsif cat_kaminschutz_str contains needle
+        assign source_category_override = 'kaminschutzgitter'
+      elsif cat_komposter_str contains needle
+        assign source_category_override = 'komposter'
+      elsif cat_luftmatratze_str contains needle
+        assign source_category_override = 'luftmatratze'
+      elsif cat_schneckenkragen_str contains needle
+        assign source_category_override = 'schneckenkragen'
+      elsif cat_toilettensitz_str contains needle
+        assign source_category_override = 'toilettensitz'
+      elsif cat_wathose_str contains needle
+        assign source_category_override = 'wathose'
+      endif
+    endfor
+    if source_category_override != ''
+      assign source_category = source_category_override
+    endif
+  endif
+
+  case source_category
+    when 'akkuschrauber'
+      assign category_priority = 'drahtwaren,gewachshaus,komposter,druckspruher,schneckenkragen,bestseller' | split: ','
+    when 'dart'
+      assign category_priority = 'akkuschrauber,drahtwaren,bestseller' | split: ','
+    when 'drahtwaren'
+      assign category_priority = 'akkuschrauber,gewachshaus,schneckenkragen,komposter,druckspruher,bestseller' | split: ','
+    when 'druckspruher'
+      assign category_priority = 'schneckenkragen,gewachshaus,komposter,drahtwaren,akkuschrauber,bestseller' | split: ','
+    when 'trolley'
+      assign category_priority = 'luftmatratze,wathose,feuerschale,bestseller' | split: ','
+    when 'feuerschale'
+      assign category_priority = 'kaminbesteck,gluhweinkocher,kaminschutzgitter,bestseller' | split: ','
+    when 'gewachshaus'
+      assign category_priority = 'schneckenkragen,druckspruher,komposter,drahtwaren,akkuschrauber,bestseller' | split: ','
+    when 'gluhweinkocher'
+      assign category_priority = 'feuerschale,kaminbesteck,kaminschutzgitter,bestseller' | split: ','
+    when 'kaminbesteck'
+      assign category_priority = 'kaminschutzgitter,feuerschale,gluhweinkocher,bestseller' | split: ','
+    when 'kaminschutzgitter'
+      assign category_priority = 'kaminbesteck,feuerschale,gluhweinkocher,bestseller' | split: ','
+    when 'komposter'
+      assign category_priority = 'schneckenkragen,druckspruher,gewachshaus,drahtwaren,akkuschrauber,bestseller' | split: ','
+    when 'luftmatratze'
+      assign category_priority = 'trolley,wathose,feuerschale,bestseller' | split: ','
+    when 'schneckenkragen'
+      assign category_priority = 'gewachshaus,druckspruher,komposter,drahtwaren,akkuschrauber,bestseller' | split: ','
+    when 'toilettensitz'
+      assign category_priority = 'bestseller,akkuschrauber,drahtwaren' | split: ','
+    when 'wathose'
+      assign category_priority = 'luftmatratze,druckspruher,trolley,feuerschale,bestseller' | split: ','
+    else
+      assign category_priority = 'bestseller,feuerschale,druckspruher,kaminbesteck,schneckenkragen,gewachshaus' | split: ','
+  endcase
+
+  assign picked_ids = ','
+  assign picked_count = 0
+-%}
+
+{%- capture rec_items -%}
+  {%- for cat_name in category_priority -%}
+    {%- if picked_count >= max_items -%}{%- break -%}{%- endif -%}
+
+    {%- assign cat_marker = ',' | append: cat_name | append: ',' -%}
+    {%- if cat_name != 'bestseller' and cart_categories contains cat_marker -%}
+      {%- continue -%}
+    {%- endif -%}
+
+    {%- assign primary_handle = '' -%}
+    {%- case cat_name -%}
+      {%- when 'akkuschrauber'     -%}{%- assign primary_handle = 'akkuschrauber' -%}
+      {%- when 'dart'              -%}{%- assign primary_handle = 'dartscheiben-beleuchtung' -%}
+      {%- when 'drahtwaren'        -%}{%- assign primary_handle = 'drahtwaren-zubehor' -%}
+      {%- when 'druckspruher'      -%}{%- assign primary_handle = 'druckspruher' -%}
+      {%- when 'trolley'           -%}{%- assign primary_handle = 'einkaufs-trolley' -%}
+      {%- when 'feuerschale'       -%}{%- assign primary_handle = 'feuerschale-1' -%}
+      {%- when 'gewachshaus'       -%}{%- assign primary_handle = 'gewachshaus' -%}
+      {%- when 'gluhweinkocher'    -%}{%- assign primary_handle = 'gluhweinkocher' -%}
+      {%- when 'kaminbesteck'      -%}{%- assign primary_handle = 'kaminbesteck' -%}
+      {%- when 'kaminschutzgitter' -%}{%- assign primary_handle = 'kaminschutzgitter' -%}
+      {%- when 'komposter'         -%}{%- assign primary_handle = 'komposter-metall' -%}
+      {%- when 'luftmatratze'      -%}{%- assign primary_handle = 'luftmatratze-selbstaufblasend' -%}
+      {%- when 'schneckenkragen'   -%}{%- assign primary_handle = 'schneckenkragen' -%}
+      {%- when 'toilettensitz'     -%}{%- assign primary_handle = 'toillettensitz' -%}
+      {%- when 'wathose'           -%}{%- assign primary_handle = 'wathosen' -%}
+      {%- when 'bestseller'        -%}{%- assign primary_handle = 'bestseller' -%}
+    {%- endcase -%}
+
+    {%- assign coll = collections[primary_handle] -%}
+    {%- if coll.products_count == 0 -%}{%- continue -%}{%- endif -%}
+
+    {%- assign chosen = blank -%}
+    {%- for p in coll.products limit: 20 -%}
+      {%- assign id_check = ',' | append: p.id | append: ',' -%}
+      {%- if cart_product_ids contains id_check -%}{%- continue -%}{%- endif -%}
+      {%- if picked_ids       contains id_check -%}{%- continue -%}{%- endif -%}
+
+      {%- assign chosen = p -%}
+      {%- break -%}
+    {%- endfor -%}
+
+    {%- if chosen != blank -%}
+      {%- assign picked_ids = picked_ids | append: chosen.id | append: ',' -%}
+      {%- assign picked_count = picked_count | plus: 1 -%}
+      {%- render 'cart-recommendation-item', product: chosen, index: picked_count -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if picked_count > 0 -%}
+  <div class="cart-recommendations">
+    <h3 class="cart-recommendations__heading">Passt perfekt dazu</h3>
+    <ul class="cart-recommendations__list" role="list">
+      {{ rec_items }}
+    </ul>
+  </div>
+{%- endif -%}
