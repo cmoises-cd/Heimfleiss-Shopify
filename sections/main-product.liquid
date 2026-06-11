@@ -207,11 +207,13 @@
             {%- when 'price' -%}
               <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                 {%- render 'price',
-                  product: product,
-                  use_variant: true,
-                  show_badges: true,
-                  price_class: 'price--large'
-                -%}
+  product: product,
+  use_variant: true,
+  show_badges: true,
+  price_class: 'price--large',
+  show_savings_in_euro: block.settings.show_savings_in_euro
+-%}
+
               </div>
               {%- if product.quantity_price_breaks_configured? -%}
                 <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
