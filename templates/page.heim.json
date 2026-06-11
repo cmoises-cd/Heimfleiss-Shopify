@@ -65,6 +65,9 @@
       "block_order": [
         "heading_UGanfW"
       ],
+      "custom_css": [
+        "@media screen and (max-width: 750px) {div {display: none; }}"
+      ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "left",
@@ -129,6 +132,9 @@
         "collection_jKGFWq",
         "collection_F6ifBA",
         "collection_WLc3JJ"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 750px) {div {display: none; }}"
       ],
       "name": "Collection Slider",
       "settings": {
