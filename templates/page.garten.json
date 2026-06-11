@@ -21,6 +21,7 @@
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
+        "image": "shopify://shop_images/Desktop_-_Garten_2.png",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -37,6 +38,7 @@
       "type": "A-plus-Content-mobile",
       "name": "A+ Content Mobile",
       "settings": {
+        "image": "shopify://shop_images/Mobile_-_Garten_2.png",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
