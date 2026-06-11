@@ -534,40 +534,6 @@
           >
             {{ 'sections.cart.checkout' | t }}
           </button>
-          {%- if settings.show_drawer_payment_icons -%}
-  <div class="cart-drawer__payment-icons">
-    {%- if settings.drawer_show_paypal -%}
-      {{ 'paypal' | payment_type_svg_tag: class: 'icon icon--full-color' }}
-    {%- endif -%}
-    {%- if settings.drawer_show_klarna -%}
-      {{ 'klarna' | payment_type_svg_tag: class: 'icon icon--full-color' }}
-    {%- endif -%}
-    {%- if settings.drawer_show_google_pay -%}
-      {{ 'google_pay' | payment_type_svg_tag: class: 'icon icon--full-color' }}
-    {%- endif -%}
-    {%- if settings.drawer_show_visa -%}
-      {{ 'visa' | payment_type_svg_tag: class: 'icon icon--full-color' }}
-    {%- endif -%}
-    {%- if settings.drawer_show_amex -%}
-      {{ 'american_express' | payment_type_svg_tag: class: 'icon icon--full-color' }}
-    {%- endif -%}
-    {%- if settings.drawer_show_mastercard -%}
-      {{ 'master' | payment_type_svg_tag: class: 'icon icon--full-color' }}
-    {%- endif -%}
-    {%- if settings.drawer_show_apple_pay -%}
-      {{ 'apple_pay' | payment_type_svg_tag: class: 'icon icon--full-color' }}
-    {%- endif -%}
-  </div>
-  <style>
-    .cart-drawer__payment-icons {
-      display: flex; flex-wrap: wrap;
-      justify-content: center; align-items: center;
-      gap: 6px; padding: 12px 0 4px; }
-    .cart-drawer__payment-icons .icon {
-      width: 44px; height: auto; border-radius: 4px; }
-  </style>
-{%- endif -%}
-
         </div>
       </div>
     </div>
