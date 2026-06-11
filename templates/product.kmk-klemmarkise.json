@@ -41,7 +41,9 @@
         },
         "price": {
           "type": "price",
-          "settings": {}
+          "settings": {
+            "show_savings_in_euro": false
+          }
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -147,7 +149,7 @@
         "enable_video_looping": false,
         "padding_top": 24,
         "padding_bottom": 0,
-        "enable_group_media": true,
+        "enable_group_media": false,
         "media_grouping_option": "Farbe"
       }
     },
@@ -186,8 +188,8 @@
             "itemBackgroundColor": "#ffffff",
             "starsColor": "",
             "starsBackgroundColor": "#ffffff",
-            "arrows_backgroundColor": "#FFFFFF",
-            "arrows_iconColor": "#9A9A9A",
+            "arrows_backgroundColor": "#ffffff",
+            "arrows_iconColor": "#9a9a9a",
             "shadow": "offset-dark",
             "border_active": false,
             "border_width": 2,
