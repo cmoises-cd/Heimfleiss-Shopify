@@ -200,6 +200,40 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "178118179514ec8f58": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_card_carousel_section_RQ47Cj": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-card-carousel-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "maxWidth": 1100,
+            "borderRadius": 8,
+            "itemsPerView": 4,
+            "mobileItemsPerView": 1,
+            "maxNumberOfCharacters": 100,
+            "imageRatio": "0.72",
+            "reviewerNameColor": "#000000",
+            "textColor": "#000000",
+            "itemBackgroundColor": "#ffffff",
+            "starsColor": "",
+            "starsBackgroundColor": "#ffffff",
+            "arrows_backgroundColor": "#FFFFFF",
+            "arrows_iconColor": "#9A9A9A",
+            "shadow": "offset-dark",
+            "border_active": false,
+            "border_width": 2,
+            "border_color": "#000000",
+            "productIds": "kaminschutzgitter"
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_card_carousel_section_RQ47Cj"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
@@ -209,6 +243,7 @@
     "rich_text_8MwhrF",
     "collection_slider_rdEkTi",
     "trustbar_DTURKW",
-    "featured_collection_hHXE7Y"
+    "featured_collection_hHXE7Y",
+    "178118179514ec8f58"
   ]
 }
