@@ -52,26 +52,47 @@
     "collection_list_9z9xQL": {
       "type": "collection-list",
       "blocks": {
+        "featured_collection_RNXJGD": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "komposter-metall"
+          }
+        },
+        "featured_collection_QXeEwn": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "druckspruher"
+          }
+        },
+        "featured_collection_NyrfAt": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "drahtwaren-zubehor"
+          }
+        },
         "featured_collection_G7Mm3d": {
           "type": "featured_collection",
           "settings": {
-            "collection": ""
+            "collection": "schneckenkragen"
           }
         },
         "featured_collection_e6Dz8D": {
           "type": "featured_collection",
           "settings": {
-            "collection": ""
+            "collection": "wathosen"
           }
         },
         "featured_collection_aGqeDh": {
           "type": "featured_collection",
           "settings": {
-            "collection": ""
+            "collection": "feuerschale-1"
           }
         }
       },
       "block_order": [
+        "featured_collection_RNXJGD",
+        "featured_collection_QXeEwn",
+        "featured_collection_NyrfAt",
         "featured_collection_G7Mm3d",
         "featured_collection_e6Dz8D",
         "featured_collection_aGqeDh"
@@ -291,7 +312,7 @@
         "text_Xfihtd": {
           "type": "text",
           "settings": {
-            "text": "<p><em>Du kennst das: Gekauft, benutzt, drei Monate später kaputt. Komposter fängt an zu rosten. Feuerschale rostet auch und raucht wie verrückt. Sachen, die aussehen wie Qualität — und es nicht sind. Bei Heimfleiss ist das anders.</em></p>"
+            "text": "<p><em>Du kennst das: Gekauft, benutzt, drei Monate später kaputt. Komposter fängt an zu rosten. Feuerschale rostet auch und raucht wie verrückt. </em><br/>Sachen die aussehen wie Qualität, es aber nicht sind.<em> Bei Heimfleiss ist das anders.</em></p>"
           }
         }
       },
