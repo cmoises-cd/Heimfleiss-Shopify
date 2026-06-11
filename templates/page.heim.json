@@ -21,6 +21,7 @@
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
+        "image": "shopify://shop_images/Desktop_-_Heim.png",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -37,6 +38,7 @@
       "type": "A-plus-Content-mobile",
       "name": "A+ Content Mobile",
       "settings": {
+        "image": "shopify://shop_images/Mobile_-_Heim.png",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -218,8 +220,8 @@
             "itemBackgroundColor": "#ffffff",
             "starsColor": "",
             "starsBackgroundColor": "#ffffff",
-            "arrows_backgroundColor": "#FFFFFF",
-            "arrows_iconColor": "#9A9A9A",
+            "arrows_backgroundColor": "#ffffff",
+            "arrows_iconColor": "#9a9a9a",
             "shadow": "offset-dark",
             "border_active": false,
             "border_width": 2,
@@ -248,7 +250,7 @@
         "text_Xfihtd": {
           "type": "text",
           "settings": {
-            "text": "<p><em>Du kennst das: Gekauft, benutzt, drei Monate später kaputt. Kaminbesteck mit abbrechenden Griffen. Drucksprüher der tropft. Sachen, die aussehen wie Qualität — und es nicht sind.Bei Heimfleiss ist das anders. Wir verkaufen nur Sachen, die wir selbst gut finden würden.</em></p>"
+            "text": "<p><em>Du kennst das: Gekauft, benutzt, drei Monate später kaputt. Kaminbesteck mit abbrechenden Griffen. Drucksprüher der tropft. Sachen, die aussehen wie Qualität — und es nicht sind.Bei Heimfleiss ist das anders.</em></p>"
           }
         }
       },
