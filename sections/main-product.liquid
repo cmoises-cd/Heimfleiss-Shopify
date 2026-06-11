@@ -898,6 +898,32 @@ color:{{ block.settings.text_color }};">{{ text }}</span>
 </section>
 
 
+{%- comment -%}
+  PLANENFUX – Dynamisches Variantenbild (Fixed)
+  Direkt vor {% schema %} in sections/main-product.liquid einfügen
+{%- endcomment -%}
+
+{%- if product.metafields.custom.dynamic_image_position != blank -%}
+  {%- capture images_json -%}
+    [
+      {%- for image in product.images -%}
+        {"src":{{ image.src | json }},"alt":{{ image.alt | json }}}
+        {%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+  {%- endcapture -%}
+
+  <script>
+    window.PlanenfuxDynamicImage = {
+      position:  {{ product.metafields.custom.dynamic_image_position | json }},
+      optionKey: {{ product.metafields.custom.dynamic_image_option | default: 'option1' | json }},
+      images:    {{ images_json }},
+      variants:  {{ product.variants | json }}
+    };
+  </script>
+  <script src="{{ 'planenfux-dynamic-image.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
 <script src="{{ 'heimfleiss-gallery-arrows.js' | asset_url }}" defer="defer"></script>
 
 
