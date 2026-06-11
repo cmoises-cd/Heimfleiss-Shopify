@@ -49,38 +49,6 @@
         "show_text_below": true
       }
     },
-    "trustbar_DTURKW": {
-      "type": "trustbar",
-      "name": "Trustbar",
-      "settings": {
-        "background_color": "#ffffff",
-        "padding_vertical": 24,
-        "badge_gap": 16,
-        "badge_background_color": "#f5f5f5",
-        "border_color": "#e0e0e0",
-        "border_width": 1,
-        "corner_radius": 50,
-        "badge_padding_vertical": 12,
-        "badge_padding_horizontal": 20,
-        "text_color": "#1a1a1a",
-        "subtext_color": "#666666",
-        "font_size": 15,
-        "icon_size": 36,
-        "icon_img_4": "shopify://shop_images/Trustpilot_1zu1.png",
-        "text_4": "Bewerte uns auf Trustpilot!",
-        "subtext_4": "Über 150.000 zufriedene Kunden",
-        "badge4_link": "https://de.trustpilot.com/review/heimfleiss.de",
-        "icon_img_1": "shopify://shop_images/Shop_-_Trust_Icons_-_Bestpreis_vom_Hersteller_9c7d19d2-2078-4c5b-bc21-37ab4b9451cc.png",
-        "text_1": "Bestpreis vom Hersteller",
-        "subtext_1": "Qualität die überzeugt",
-        "icon_img_2": "shopify://shop_images/Shop_-_Trust_Icons_-_Schneller_Kostenloser_Versand_e343bd98-c72d-420a-8886-f7962bceb77d.png",
-        "text_2": "Kostenloser Versand",
-        "subtext_2": "In 1-4 Tagen bei dir",
-        "icon_img_3": "shopify://shop_images/Shop_-_Trust_Icons_-_30_Tage_Geld_zurueck_4f376ad7-986f-45af-8f9f-7a9638d1aeb5.png",
-        "text_3": "30 Tage Retoure",
-        "subtext_3": "Risikofrei testen"
-      }
-    },
     "rich_text_8MwhrF": {
       "type": "rich-text",
       "blocks": {
@@ -171,14 +139,76 @@
         "wrap_around": "true",
         "mr": 16
       }
+    },
+    "trustbar_DTURKW": {
+      "type": "trustbar",
+      "name": "Trustbar",
+      "settings": {
+        "background_color": "#ffffff",
+        "padding_vertical": 24,
+        "badge_gap": 16,
+        "badge_background_color": "#f5f5f5",
+        "border_color": "#e0e0e0",
+        "border_width": 1,
+        "corner_radius": 50,
+        "badge_padding_vertical": 12,
+        "badge_padding_horizontal": 20,
+        "text_color": "#1a1a1a",
+        "subtext_color": "#666666",
+        "font_size": 15,
+        "icon_size": 36,
+        "icon_img_4": "shopify://shop_images/Trustpilot_1zu1.png",
+        "text_4": "Bewerte uns auf Trustpilot!",
+        "subtext_4": "Über 150.000 zufriedene Kunden",
+        "badge4_link": "https://de.trustpilot.com/review/heimfleiss.de",
+        "icon_img_1": "shopify://shop_images/Shop_-_Trust_Icons_-_Bestpreis_vom_Hersteller_9c7d19d2-2078-4c5b-bc21-37ab4b9451cc.png",
+        "text_1": "Bestpreis vom Hersteller",
+        "subtext_1": "Qualität die überzeugt",
+        "icon_img_2": "shopify://shop_images/Shop_-_Trust_Icons_-_Schneller_Kostenloser_Versand_e343bd98-c72d-420a-8886-f7962bceb77d.png",
+        "text_2": "Kostenloser Versand",
+        "subtext_2": "In 1-4 Tagen bei dir",
+        "icon_img_3": "shopify://shop_images/Shop_-_Trust_Icons_-_30_Tage_Geld_zurueck_4f376ad7-986f-45af-8f9f-7a9638d1aeb5.png",
+        "text_3": "30 Tage Retoure",
+        "subtext_3": "Risikofrei testen"
+      }
+    },
+    "featured_collection_hHXE7Y": {
+      "type": "featured-collection",
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "heim-produkte",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "main",
     "a_plus_content_desktop_xNDf87",
     "a_plus_content_mobile_FmGkCX",
-    "trustbar_DTURKW",
     "rich_text_8MwhrF",
-    "collection_slider_rdEkTi"
+    "collection_slider_rdEkTi",
+    "trustbar_DTURKW",
+    "featured_collection_hHXE7Y"
   ]
 }
