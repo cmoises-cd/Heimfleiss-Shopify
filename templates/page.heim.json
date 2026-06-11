@@ -234,6 +234,37 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "rich_text_fbTEKm": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_a6Cjfh": {
+          "type": "heading",
+          "settings": {
+            "heading": "„Warum Heimfleiss?\"",
+            "heading_size": "h1"
+          }
+        },
+        "text_Xfihtd": {
+          "type": "text",
+          "settings": {
+            "text": "<p><em>Du kennst das: Gekauft, benutzt, drei Monate später kaputt. Kaminbesteck mit abbrechenden Griffen. Drucksprüher der tropft. Sachen, die aussehen wie Qualität — und es nicht sind.Bei Heimfleiss ist das anders. Wir verkaufen nur Sachen, die wir selbst gut finden würden.</em></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_a6Cjfh",
+        "text_Xfihtd"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
@@ -244,6 +275,7 @@
     "collection_slider_rdEkTi",
     "trustbar_DTURKW",
     "featured_collection_hHXE7Y",
-    "178118179514ec8f58"
+    "178118179514ec8f58",
+    "rich_text_fbTEKm"
   ]
 }
