@@ -300,7 +300,7 @@
         "text_Xfihtd": {
           "type": "text",
           "settings": {
-            "text": "<p><em>Du kennst das: Gekauft, benutzt, drei Monate später kaputt. Kaminbesteck mit abbrechenden Griffen. Drucksprüher der tropft. Sachen, die aussehen wie Qualität — und es nicht sind.Bei Heimfleiss ist das anders.</em></p>"
+            "text": "<p><em>Du kennst das: Gekauft, benutzt, drei Monate später kaputt. Kaminbesteck mit abbrechenden Griffen. Drucksprüher der tropft. </em><br/>Sachen die aussehen wie Qualität, es aber nicht sind. <em>Bei Heimfleiss ist das anders.</em></p>"
           }
         }
       },
