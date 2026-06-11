@@ -63,6 +63,9 @@
       "block_order": [
         "heading_UGanfW"
       ],
+      "custom_css": [
+        "@media screen and (max-width: 750px) {div {display: none; }}"
+      ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "left",
@@ -120,6 +123,9 @@
         "collection_MUUhQn",
         "collection_8tpKaf",
         "collection_CQXPfC"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 750px) {div {display: none; }}"
       ],
       "name": "Collection Slider",
       "settings": {
@@ -249,6 +255,7 @@
         "heading_a6Cjfh",
         "text_Xfihtd"
       ],
+      "custom_css": [],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
