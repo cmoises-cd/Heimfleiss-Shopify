@@ -57,26 +57,54 @@
         "featured_collection_C6gBWr": {
           "type": "featured_collection",
           "settings": {
-            "collection": ""
+            "collection": "kaminbesteck"
           }
         },
         "featured_collection_pTfRgp": {
           "type": "featured_collection",
           "settings": {
-            "collection": ""
+            "collection": "dartscheiben-beleuchtung"
           }
         },
-        "featured_collection_DDDhyr": {
+        "featured_collection_p8KiDp": {
           "type": "featured_collection",
           "settings": {
-            "collection": ""
+            "collection": "einkaufs-trolley"
+          }
+        },
+        "featured_collection_zPDTUm": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "luftmatratze-selbstaufblasend"
+          }
+        },
+        "featured_collection_9DVe9d": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "toillettensitz"
+          }
+        },
+        "featured_collection_fXmiPn": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "kaminschutzgitter"
+          }
+        },
+        "featured_collection_jAfQfD": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "gluhweinkocher"
           }
         }
       },
       "block_order": [
         "featured_collection_C6gBWr",
         "featured_collection_pTfRgp",
-        "featured_collection_DDDhyr"
+        "featured_collection_p8KiDp",
+        "featured_collection_zPDTUm",
+        "featured_collection_9DVe9d",
+        "featured_collection_fXmiPn",
+        "featured_collection_jAfQfD"
       ],
       "custom_css": [
         "@media screen and (min-width: 750px) {div {display: none; }}"
