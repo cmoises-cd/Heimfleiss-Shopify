@@ -899,7 +899,7 @@ color:{{ block.settings.text_color }};">{{ text }}</span>
 
 
 {%- comment -%}
-  PLANENFUX – Dynamisches Variantenbild (Fixed)
+  DYNAMIC VARIANT IMAGE – Multi-Option Support
   Direkt vor {% schema %} in sections/main-product.liquid einfügen
 {%- endcomment -%}
 
@@ -915,10 +915,11 @@ color:{{ block.settings.text_color }};">{{ text }}</span>
 
   <script>
     window.PlanenfuxDynamicImage = {
-      position:  {{ product.metafields.custom.dynamic_image_position | json }},
-      optionKey: {{ product.metafields.custom.dynamic_image_option | default: 'option1' | json }},
-      images:    {{ images_json }},
-      variants:  {{ product.variants | json }}
+      position:   {{ product.metafields.custom.dynamic_image_position | json }},
+      optionKey:  {{ product.metafields.custom.dynamic_image_option | default: 'option1' | json }},
+      optionKey2: {{ product.metafields.custom.dynamic_image_option_2 | default: '' | json }},
+      images:     {{ images_json }},
+      variants:   {{ product.variants | json }}
     };
   </script>
   <script src="{{ 'planenfux-dynamic-image.js' | asset_url }}" defer="defer"></script>
