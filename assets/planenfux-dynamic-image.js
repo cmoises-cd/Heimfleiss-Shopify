@@ -1,8 +1,7 @@
 /**
- * planenfux-dynamic-image.js v5
- * - Polling für zuverlässige Variantenerkennung
- * - Slider-Reinitialisierung für Pfeil-Navigation
- * - Automatisch zu Bild 1 springen bei Variantenwechsel
+ * planenfux-dynamic-image.js v6
+ * - Multi-Option Support (optionKey + optionKey2)
+ * - Abwärtskompatibel: funktioniert weiterhin mit nur einer Option
  */
 
 (function () {
@@ -11,18 +10,25 @@
   var cfg = window.PlanenfuxDynamicImage;
   if (!cfg || !cfg.position || !cfg.images || !cfg.variants) return;
 
-  var position = cfg.position;
-  var optKey   = cfg.optionKey || 'option1';
-  var variants = cfg.variants;
+  var position  = cfg.position;
+  var optKey    = cfg.optionKey  || 'option1';
+  var optKey2   = cfg.optionKey2 || '';
+  var variants  = cfg.variants;
 
-  var allOptionValues = variants
-    .map(function (v) { return v[optKey] ? v[optKey].trim().toLowerCase() : null; })
+  function getMatchKey(variant) {
+    var val1 = variant[optKey]  ? variant[optKey].trim()  : '';
+    var val2 = optKey2 && variant[optKey2] ? variant[optKey2].trim() : '';
+    return val2 ? val1 + ' ' + val2 : val1;
+  }
+
+  var allMatchKeys = variants
+    .map(function (v) { return getMatchKey(v).toLowerCase(); })
     .filter(Boolean);
 
   function isMeasurementItem(item) {
     var img = item.querySelector('img');
     if (!img || !img.alt) return false;
-    return allOptionValues.indexOf(img.alt.trim().toLowerCase()) !== -1;
+    return allMatchKeys.indexOf(img.alt.trim().toLowerCase()) !== -1;
   }
 
   function setVisibility(mainItem, visible) {
@@ -43,32 +49,22 @@
     });
   }
 
-  // Zu Bild 1 springen
   function jumpToFirstImage() {
-    // Versuch 1: Dawn's eingebaute setActiveMedia Methode
-    var gallery = document.querySelector('product-media-gallery');
+    var gallery   = document.querySelector('product-media-gallery');
     var firstItem = document.querySelector(
       '.product__media-list > .product__media-item:not([style*="display: none"])'
     );
     if (gallery && firstItem && typeof gallery.setActiveMedia === 'function') {
       var mediaId = firstItem.dataset.mediaId;
-      if (mediaId) {
-        gallery.setActiveMedia(mediaId, false);
-        return;
-      }
+      if (mediaId) { gallery.setActiveMedia(mediaId, false); return; }
     }
 
-    // Versuch 2: Erstes sichtbares Thumbnail anklicken
     var firstThumb = document.querySelector(
       '[id*="Thumbnails"] li:not([style*="display: none"]) button,' +
       '.thumbnail-list li:not([style*="display: none"]) button'
     );
-    if (firstThumb) {
-      firstThumb.click();
-      return;
-    }
+    if (firstThumb) { firstThumb.click(); return; }
 
-    // Versuch 3: Hauptslider auf 0 scrollen
     var mainSlider = document.querySelector('.product__media-list');
     if (mainSlider) mainSlider.scrollTo({ left: 0, behavior: 'smooth' });
   }
@@ -88,8 +84,8 @@
     var variant = variants.find(function (v) { return v.id === variantId; });
     if (!variant) return;
 
-    var optionValue = variant[optKey];
-    if (!optionValue) return;
+    var matchKey = getMatchKey(variant).toLowerCase();
+    if (!matchKey) return;
 
     var mediaList = document.querySelector('.product__media-list');
     if (!mediaList) return;
@@ -106,7 +102,7 @@
     var matchingItem = null;
     measurementItems.forEach(function (item) {
       var img = item.querySelector('img');
-      if (img && img.alt && img.alt.trim().toLowerCase() === optionValue.trim().toLowerCase()) {
+      if (img && img.alt && img.alt.trim().toLowerCase() === matchKey) {
         matchingItem = item;
       }
     });
@@ -121,7 +117,6 @@
       }
     }
 
-    // Zu Bild 1 springen + Slider neu initialisieren
     setTimeout(function () {
       jumpToFirstImage();
       reinitSliders();
