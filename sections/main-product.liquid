@@ -1157,10 +1157,20 @@ color:{{ block.settings.text_color }};">{{ text }}</span>
       ]
     },
     {
-      "type": "price",
-      "name": "t:sections.main-product.blocks.price.name",
-      "limit": 1
-    },
+  "type": "price",
+  "name": "t:sections.main-product.blocks.price.name",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_savings_in_euro",
+      "label": "Rabatt in Euro anzeigen (statt %)",
+      "default": false,
+      "info": "Ein: Spare 56,85 EUR — Aus: 36% Rabatt"
+    }
+  ]
+},
+
     {
       "type": "sku",
       "name": "t:sections.main-product.blocks.sku.name",
