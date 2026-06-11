@@ -76,57 +76,50 @@
     "collection_slider_rdEkTi": {
       "type": "collection-slider",
       "blocks": {
-        "collection_gcnPbU": {
+        "collection_QdmVTM": {
           "type": "collection",
           "settings": {
-            "collection": "kaminbesteck"
+            "collection": "komposter-metall"
           }
         },
-        "collection_DCadWk": {
+        "collection_q34DD3": {
           "type": "collection",
           "settings": {
-            "collection": "dartscheiben-beleuchtung"
+            "collection": "druckspruher"
           }
         },
-        "collection_UGdqJY": {
+        "collection_Trk3Q4": {
           "type": "collection",
           "settings": {
-            "collection": "einkaufs-trolley"
+            "collection": "drahtwaren-zubehor"
           }
         },
-        "collection_mFWHiD": {
+        "collection_MUUhQn": {
           "type": "collection",
           "settings": {
-            "collection": "luftmatratze-selbstaufblasend"
+            "collection": "schneckenkragen"
           }
         },
-        "collection_jKGFWq": {
+        "collection_8tpKaf": {
           "type": "collection",
           "settings": {
-            "collection": "toillettensitz"
+            "collection": "wathosen"
           }
         },
-        "collection_F6ifBA": {
+        "collection_CQXPfC": {
           "type": "collection",
           "settings": {
-            "collection": "kaminschutzgitter"
-          }
-        },
-        "collection_WLc3JJ": {
-          "type": "collection",
-          "settings": {
-            "collection": "gluhweinkocher"
+            "collection": "feuerschale-1"
           }
         }
       },
       "block_order": [
-        "collection_gcnPbU",
-        "collection_DCadWk",
-        "collection_UGdqJY",
-        "collection_mFWHiD",
-        "collection_jKGFWq",
-        "collection_F6ifBA",
-        "collection_WLc3JJ"
+        "collection_QdmVTM",
+        "collection_q34DD3",
+        "collection_Trk3Q4",
+        "collection_MUUhQn",
+        "collection_8tpKaf",
+        "collection_CQXPfC"
       ],
       "name": "Collection Slider",
       "settings": {
