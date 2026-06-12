@@ -107,15 +107,6 @@
             "content": "<p><strong>Lieferzeit und Versandkosten:</strong> Kostenloser Versand innerhalb Deutschlands. Lieferzeit: 1-4 Werktage ab Bestellbestätigung.</p><p><br/><strong>Versanddienstleister:</strong> Versand erfolgt zuverlässig über DHL.<br/><strong>Hinweis:</strong> In Ausnahmefällen kann es zu Verzögerungen kommen. Bei Fragen stehen wir Ihnen gerne zur Verfügung.<br/><strong>Retoure:</strong> Rückgabe innerhalb von 30 Tagen möglich. Rücksendekosten tragen Sie, es sei denn, das Produkt ist mangelhaft. Weitere Details in unseren AGB und der Widerrufsbelehrung.</p>",
             "page": ""
           }
-        },
-        "collapsible_tab_3dcg4z": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "FAQ",
-            "icon": "none",
-            "content": "",
-            "page": ""
-          }
         }
       },
       "block_order": [
@@ -128,8 +119,7 @@
         "buy_buttons",
         "trust_icons_e3Exm9",
         "description_K6Q4Qq",
-        "collapsible_tab_TXXHhe",
-        "collapsible_tab_3dcg4z"
+        "collapsible_tab_TXXHhe"
       ],
       "custom_css": [
         ".product__title > * {margin: 0; font-size: 18px;}",
@@ -381,35 +371,44 @@
         "collapsible_row_AbVPJH": {
           "type": "collapsible_row",
           "settings": {
+            "heading": "Ist die Markise wasserdicht?",
+            "icon": "question_mark",
+            "row_content": "<p>Nein, der Stoff ist wasserabweisend, kein wasserdichtes Material. Leichter Regen perlt ab. Bei Starkregen oder Dauerregen empfehlen wir, die Markise einzurollen. Primär entwickelt als Sonnenschutz für Balkon & Terrasse.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_GWw3MU": {
+          "type": "collapsible_row",
+          "settings": {
             "heading": "Collapsible row",
-            "icon": "check_mark",
+            "icon": "question_mark",
             "row_content": "",
             "page": ""
           }
         },
-        "collapsible_row_RRNJEx": {
+        "collapsible_row_Gp4Jdj": {
           "type": "collapsible_row",
           "settings": {
             "heading": "Collapsible row",
-            "icon": "check_mark",
+            "icon": "question_mark",
             "row_content": "",
             "page": ""
           }
         },
-        "collapsible_row_z6Cec8": {
+        "collapsible_row_BdKQg8": {
           "type": "collapsible_row",
           "settings": {
             "heading": "Collapsible row",
-            "icon": "check_mark",
+            "icon": "question_mark",
             "row_content": "",
             "page": ""
           }
         },
-        "collapsible_row_nHUUEN": {
+        "collapsible_row_KUVUqM": {
           "type": "collapsible_row",
           "settings": {
             "heading": "Collapsible row",
-            "icon": "check_mark",
+            "icon": "question_mark",
             "row_content": "",
             "page": ""
           }
@@ -417,9 +416,10 @@
       },
       "block_order": [
         "collapsible_row_AbVPJH",
-        "collapsible_row_RRNJEx",
-        "collapsible_row_z6Cec8",
-        "collapsible_row_nHUUEN"
+        "collapsible_row_GWw3MU",
+        "collapsible_row_Gp4Jdj",
+        "collapsible_row_BdKQg8",
+        "collapsible_row_KUVUqM"
       ],
       "name": "t:sections.collapsible_content.presets.name",
       "settings": {
