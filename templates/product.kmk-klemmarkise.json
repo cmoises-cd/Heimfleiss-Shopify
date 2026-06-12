@@ -42,7 +42,7 @@
         "price": {
           "type": "price",
           "settings": {
-            "show_savings_in_euro": false
+            "show_savings_in_euro": true
           }
         },
         "variant_picker": {
