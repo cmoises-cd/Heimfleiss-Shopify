@@ -209,6 +209,7 @@
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
+        "image": "shopify://shop_images/KMK-AT_-_1_-_A_Content_Desktop.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -225,6 +226,7 @@
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
+        "image": "shopify://shop_images/KMK-AT_-_2_-_A_Content_Desktop.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -241,6 +243,7 @@
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
+        "image": "shopify://shop_images/KMK-AT_-_3_-_A_Content_Desktop.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -257,6 +260,7 @@
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
+        "image": "shopify://shop_images/KMK-AT_-_4_-_A_Content_Desktop.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -273,6 +277,7 @@
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
+        "image": "shopify://shop_images/KMK-AT_-_5_-_A_Content_Desktop.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
