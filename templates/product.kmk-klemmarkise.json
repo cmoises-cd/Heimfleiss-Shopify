@@ -389,27 +389,27 @@
         "collapsible_row_Gp4Jdj": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Collapsible row",
+            "heading": "Wie stabil ist die Markise bei Wind?",
             "icon": "question_mark",
-            "row_content": "",
+            "row_content": "<p>Die Markise ist nach EN 13561 (Windklasse 2) geprüft und hält moderaten Wind stand. Das robuste, pulverbeschichtete Stahlgestell sorgt für Stabilität – bei starkem Wind einfach einkurbeln.<br/><br/></p>",
             "page": ""
           }
         },
         "collapsible_row_BdKQg8": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Collapsible row",
+            "heading": "Wie flexibel ist die Höhe einstellbar?",
             "icon": "question_mark",
-            "row_content": "",
+            "row_content": "<p>Die Teleskopstangen sind von ca. 2,06 m bis 3,00 m höhenverstellbar. Zusätzlich gibt es eine Feinjustierung am Fuß – ideal für unterschiedliche Balkonhöhen und passgenaue Montage.<br/><br/></p>",
             "page": ""
           }
         },
         "collapsible_row_KUVUqM": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Collapsible row",
+            "heading": "Wie reinige und pflege ich die Markise?",
             "icon": "question_mark",
-            "row_content": "",
+            "row_content": "<p>Sehr pflegeleicht: Einfach mit einem feuchten Tuch abwischen. Die PU-Beschichtung reduziert Schmutzanhaftung – kein aufwendiges Waschen nötig, wie bei vielen anderen Markisen.<br/><br/></p>",
             "page": ""
           }
         }
