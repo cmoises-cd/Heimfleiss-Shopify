@@ -21,7 +21,7 @@
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
-        "image": "shopify://shop_images/Klaviyo_Email_Marketing_-_Heimfleiss.png",
+        "image": "shopify://shop_images/42.png",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -38,7 +38,7 @@
       "type": "A-plus-Content-mobile",
       "name": "A+ Content Mobile",
       "settings": {
-        "image": "shopify://shop_images/Mobile_-_Heim.png",
+        "image": "shopify://shop_images/43.png",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
