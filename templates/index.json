@@ -279,22 +279,28 @@
     "collection_list_8eUXJx": {
       "type": "collection-list",
       "blocks": {
-        "featured_collection_fYdXpB": {
+        "featured_collection_eCcxF4": {
           "type": "featured_collection",
           "settings": {
-            "collection": "akkuschrauber"
+            "collection": "klemmarkisen"
           }
         },
-        "featured_collection_6xewgx": {
+        "featured_collection_XMzTA4": {
           "type": "featured_collection",
           "settings": {
-            "collection": "kaminbesteck"
+            "collection": "luftmatratze-selbstaufblasend"
           }
         },
         "featured_collection_yi7Npx": {
           "type": "featured_collection",
           "settings": {
             "collection": "komposter-metall"
+          }
+        },
+        "featured_collection_6xewgx": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "kaminbesteck"
           }
         },
         "featured_collection_9YheBT": {
@@ -313,12 +319,6 @@
           "type": "featured_collection",
           "settings": {
             "collection": "einkaufs-trolley"
-          }
-        },
-        "featured_collection_XMzTA4": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "luftmatratze-selbstaufblasend"
           }
         },
         "featured_collection_7YM7BT": {
@@ -357,35 +357,35 @@
             "collection": "feuerschale-1"
           }
         },
+        "featured_collection_fYdXpB": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "akkuschrauber"
+          }
+        },
         "featured_collection_jJ8z7D": {
           "type": "featured_collection",
           "settings": {
             "collection": "gluhweinkocher"
           }
-        },
-        "featured_collection_eCcxF4": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "klemmarkisen"
-          }
         }
       },
       "block_order": [
-        "featured_collection_fYdXpB",
-        "featured_collection_6xewgx",
+        "featured_collection_eCcxF4",
+        "featured_collection_XMzTA4",
         "featured_collection_yi7Npx",
+        "featured_collection_6xewgx",
         "featured_collection_9YheBT",
         "featured_collection_EDDdDU",
         "featured_collection_ixHeg7",
-        "featured_collection_XMzTA4",
         "featured_collection_7YM7BT",
         "featured_collection_JMd6AG",
         "featured_collection_a8nWUh",
         "featured_collection_rL6EbJ",
         "featured_collection_PtG9bA",
         "featured_collection_B7nWQ7",
-        "featured_collection_jJ8z7D",
-        "featured_collection_eCcxF4"
+        "featured_collection_fYdXpB",
+        "featured_collection_jJ8z7D"
       ],
       "custom_css": [
         "@media screen and (min-width: 750px) {div {display: none; }}"
