@@ -303,12 +303,6 @@
             "collection": "drahtwaren-zubehor"
           }
         },
-        "featured_collection_a3fjyX": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "druckspruher"
-          }
-        },
         "featured_collection_EDDdDU": {
           "type": "featured_collection",
           "settings": {
@@ -368,6 +362,12 @@
           "settings": {
             "collection": "gluhweinkocher"
           }
+        },
+        "featured_collection_eCcxF4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "klemmarkisen"
+          }
         }
       },
       "block_order": [
@@ -375,7 +375,6 @@
         "featured_collection_6xewgx",
         "featured_collection_yi7Npx",
         "featured_collection_9YheBT",
-        "featured_collection_a3fjyX",
         "featured_collection_EDDdDU",
         "featured_collection_ixHeg7",
         "featured_collection_XMzTA4",
@@ -385,7 +384,8 @@
         "featured_collection_rL6EbJ",
         "featured_collection_PtG9bA",
         "featured_collection_B7nWQ7",
-        "featured_collection_jJ8z7D"
+        "featured_collection_jJ8z7D",
+        "featured_collection_eCcxF4"
       ],
       "custom_css": [
         "@media screen and (min-width: 750px) {div {display: none; }}"
