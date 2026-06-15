@@ -207,11 +207,13 @@
             {%- when 'price' -%}
               <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                 {%- render 'price',
-                  product: product,
-                  use_variant: true,
-                  show_badges: true,
-                  price_class: 'price--large'
-                -%}
+  product: product,
+  use_variant: true,
+  show_badges: true,
+  price_class: 'price--large',
+  show_savings_in_euro: block.settings.show_savings_in_euro
+-%}
+
               </div>
               {%- if product.quantity_price_breaks_configured? -%}
                 <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
@@ -896,6 +898,33 @@ color:{{ block.settings.text_color }};">{{ text }}</span>
 </section>
 
 
+{%- comment -%}
+  DYNAMIC VARIANT IMAGE – Multi-Option Support
+  Direkt vor {% schema %} in sections/main-product.liquid einfügen
+{%- endcomment -%}
+
+{%- if product.metafields.custom.dynamic_image_position != blank -%}
+  {%- capture images_json -%}
+    [
+      {%- for image in product.images -%}
+        {"src":{{ image.src | json }},"alt":{{ image.alt | json }}}
+        {%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+  {%- endcapture -%}
+
+  <script>
+    window.PlanenfuxDynamicImage = {
+      position:   {{ product.metafields.custom.dynamic_image_position | json }},
+      optionKey:  {{ product.metafields.custom.dynamic_image_option | default: 'option1' | json }},
+      optionKey2: {{ product.metafields.custom.dynamic_image_option_2 | default: '' | json }},
+      images:     {{ images_json }},
+      variants:   {{ product.variants | json }}
+    };
+  </script>
+  <script src="{{ 'planenfux-dynamic-image.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
 <script src="{{ 'heimfleiss-gallery-arrows.js' | asset_url }}" defer="defer"></script>
 
 
@@ -1155,10 +1184,20 @@ color:{{ block.settings.text_color }};">{{ text }}</span>
       ]
     },
     {
-      "type": "price",
-      "name": "t:sections.main-product.blocks.price.name",
-      "limit": 1
-    },
+  "type": "price",
+  "name": "t:sections.main-product.blocks.price.name",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_savings_in_euro",
+      "label": "Rabatt in Euro anzeigen (statt %)",
+      "default": false,
+      "info": "Ein: Spare 56,85 EUR — Aus: 36% Rabatt"
+    }
+  ]
+},
+
     {
       "type": "sku",
       "name": "t:sections.main-product.blocks.sku.name",

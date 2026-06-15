@@ -1556,4 +1556,57 @@
       }
     ]
   }
+  ,{
+  "name": "💳 Zahlungsarten (Warenkorb-Drawer)",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_drawer_payment_icons",
+      "label": "Zahlungsarten im Drawer anzeigen",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "drawer_show_paypal",
+      "label": "PayPal",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "drawer_show_klarna",
+      "label": "Klarna",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "drawer_show_visa",
+      "label": "Visa",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "drawer_show_amex",
+      "label": "American Express",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "drawer_show_mastercard",
+      "label": "Kreditkarte (Mastercard)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "drawer_show_apple_pay",
+      "label": "Apple Pay",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "drawer_show_google_pay",
+      "label": "Google Pay",
+      "default": true
+    }
+  ]
+}
 ]

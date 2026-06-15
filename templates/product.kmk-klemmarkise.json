@@ -16,7 +16,7 @@
           "type": "title",
           "settings": {
             "show_subtitle": true,
-            "subtitle_text": "Schutz für Baby und Haustier",
+            "subtitle_text": "Endlich Schatten auf dem Balkon – ganz ohne Bohren.",
             "subtitle_font_family": "heading",
             "subtitle_font_size": 14,
             "subtitle_color": "#707070",
@@ -42,7 +42,7 @@
         "price": {
           "type": "price",
           "settings": {
-            "show_savings_in_euro": false
+            "show_savings_in_euro": true
           }
         },
         "variant_picker": {
@@ -72,7 +72,7 @@
             "show_gift_card_recipient": false
           }
         },
-        "trust_icons_KJgBAd": {
+        "trust_icons_e3Exm9": {
           "type": "trust_icons",
           "settings": {
             "border_radius": 8,
@@ -83,22 +83,16 @@
             "icon_gap": 20,
             "font_size": 14,
             "text_color": "#555555",
-            "icon_1": "shopify://shop_images/PayPal-Symbol_5dce1478-36eb-4c3b-adf1-1462ec6747f4.png",
+            "icon_1": "shopify://shop_images/PayPal-Symbol.png",
             "text_1": "Bezahle nach 30 Tagen",
-            "icon_2": "shopify://shop_images/Klarna_Payment_Badge_4a432e92-f4cc-4da0-a438-a5219a6ea5c3.svg",
+            "icon_2": "shopify://shop_images/Klarna_Payment_Badge.svg",
             "text_2": "Bezahle in 30 Tagen",
-            "icon_3": "shopify://shop_images/Shop_-_Trust_Icons_-_Bestpreis_vom_Hersteller_9c7d19d2-2078-4c5b-bc21-37ab4b9451cc.png",
+            "icon_3": "shopify://shop_images/Shop_-_Trust_Icons_-_Bestpreis_vom_Hersteller.png",
             "text_3": "Bestpreis vom Hersteller",
-            "icon_4": "shopify://shop_images/Shop_-_Trust_Icons_-_Schneller_Kostenloser_Versand_e343bd98-c72d-420a-8886-f7962bceb77d.png",
+            "icon_4": "shopify://shop_images/Shop_-_Trust_Icons_-_Schneller_Kostenloser_Versand.png",
             "text_4": "Kostenloser Versand",
-            "icon_5": "shopify://shop_images/Shop_-_Trust_Icons_-_30_Tage_Geld_zurueck_4f376ad7-986f-45af-8f9f-7a9638d1aeb5.png",
+            "icon_5": "shopify://shop_images/Shop_-_Trust_Icons_-_30_Tage_Geld_zurueck.png",
             "text_5": "30 Tage Retoure"
-          }
-        },
-        "bundler_custom_bundle_77zbLp": {
-          "type": "shopify://apps/bundler/blocks/custom-bundle/7a6ae1b8-3b16-449b-8429-8bb89a62c664",
-          "settings": {
-            "shortcode": ""
           }
         },
         "description_K6Q4Qq": {
@@ -113,15 +107,6 @@
             "content": "<p><strong>Lieferzeit und Versandkosten:</strong> Kostenloser Versand innerhalb Deutschlands. Lieferzeit: 1-4 Werktage ab Bestellbestätigung.</p><p><br/><strong>Versanddienstleister:</strong> Versand erfolgt zuverlässig über GLS.<br/><strong>Hinweis:</strong> In Ausnahmefällen kann es zu Verzögerungen kommen. Bei Fragen stehen wir Ihnen gerne zur Verfügung.<br/><strong>Retoure:</strong> Rückgabe innerhalb von 30 Tagen möglich. Rücksendekosten tragen Sie, es sei denn, das Produkt ist mangelhaft. Weitere Details in unseren AGB und der Widerrufsbelehrung.</p>",
             "page": ""
           }
-        },
-        "collapsible_tab_3dcg4z": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "FAQ",
-            "icon": "none",
-            "content": "<p><strong>Ist das Kaminschutzgitter einfach zu montieren?</strong><br/>Ja – es wird vormontiert geliefert und mit einer bebilderten deutschen Anleitung erklärt. Dank Saugfüßen & 360°-Wandhalterung steht es stabil – ganz ohne Bohren möglich.<br/><br/><strong>Wie hoch ist das Gitter und schützt es zuverlässig?</strong><br/>Das Gitter ist 75 cm hoch und damit perfekt, um Kinder & Haustiere sicher auf Abstand zu halten. Die stabile Metallkonstruktion verhindert zuverlässig Kontakt mit heißen Flächen.<br/><br/><strong>Kann man es auch als Tür- oder Treppenschutzgitter nutzen?<br/></strong>Ja – das Heimfleiss Kaminschutzgitter ist flexibel einsetzbar: als Türschutz, Treppengitter oder Laufstallbegrenzung. Mit 5 Elementen & Erweiterungsoption passt es in fast jedes Zuhause.<br/><br/><br/><br/><br/></p>",
-            "page": ""
-          }
         }
       },
       "block_order": [
@@ -132,11 +117,9 @@
         "188e402c-bc85-40ca-bfc8-08144521bccf",
         "custom_liquid_fqHhzY",
         "buy_buttons",
-        "trust_icons_KJgBAd",
-        "bundler_custom_bundle_77zbLp",
+        "trust_icons_e3Exm9",
         "description_K6Q4Qq",
-        "collapsible_tab_TXXHhe",
-        "collapsible_tab_3dcg4z"
+        "collapsible_tab_TXXHhe"
       ],
       "custom_css": [
         ".product__title > * {margin: 0; font-size: 18px;}",
@@ -150,7 +133,7 @@
         "media_fit": "contain",
         "gallery_layout": "thumbnail_slider",
         "media_position": "left",
-        "image_zoom": "hover",
+        "image_zoom": "none",
         "mobile_thumbnails": "hide",
         "hide_variants": true,
         "enable_video_looping": false,
@@ -178,10 +161,10 @@
         "padding_bottom": 28
       }
     },
-    "17792005117d388bf2": {
+    "1779199719e3280b10": {
       "type": "apps",
       "blocks": {
-        "loox_reviews_loox_card_carousel_section_JPGLtE": {
+        "loox_reviews_loox_card_carousel_section_RHPAFf": {
           "type": "shopify://apps/loox-reviews/blocks/loox-card-carousel-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
           "settings": {
             "maxWidth": 1100,
@@ -201,22 +184,22 @@
             "border_active": false,
             "border_width": 2,
             "border_color": "#000000",
-            "productIds": "kaminschutzgitter"
+            "productIds": "klemmarkise"
           }
         }
       },
       "block_order": [
-        "loox_reviews_loox_card_carousel_section_JPGLtE"
+        "loox_reviews_loox_card_carousel_section_RHPAFf"
       ],
       "settings": {
         "include_margins": true
       }
     },
-    "a_plus_content_desktop_RFExdY": {
+    "a_plus_content_desktop_JfkcNb": {
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
-        "image": "shopify://shop_images/KMS-AT_-_A_Content_-_1_-_Desktop.jpg",
+        "image": "shopify://shop_images/KMK-AT_-_1_-_A_Content_Desktop.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -229,11 +212,11 @@
         "show_text_below": true
       }
     },
-    "a_plus_content_desktop_6Vd6dP": {
+    "a_plus_content_desktop_W7kGLw": {
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
-        "image": "shopify://shop_images/KMS-AT_-_A_Content_-_2_-_Desktop.jpg",
+        "image": "shopify://shop_images/KMK-AT_-_2_-_A_Content_Desktop.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -246,11 +229,11 @@
         "show_text_below": true
       }
     },
-    "a_plus_content_desktop_piWGBC": {
+    "a_plus_content_desktop_pzKDVy": {
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
-        "image": "shopify://shop_images/KMS-AT_-_A_Content_-_3_-_Desktop.jpg",
+        "image": "shopify://shop_images/KMK-AT_-_3_-_A_Content_Desktop.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -263,11 +246,11 @@
         "show_text_below": true
       }
     },
-    "a_plus_content_desktop_a9iT4G": {
+    "a_plus_content_desktop_ahczzH": {
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
-        "image": "shopify://shop_images/KMS-AT_-_A_Content_-_4_-_Desktop.jpg",
+        "image": "shopify://shop_images/KMK-AT_-_4_-_A_Content_Desktop.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -280,11 +263,11 @@
         "show_text_below": true
       }
     },
-    "a_plus_content_desktop_KhgC4r": {
+    "a_plus_content_desktop_3dyRwn": {
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
-        "image": "shopify://shop_images/KMS-AT_-_A_Content_-_5_-_Desktop.jpg",
+        "image": "shopify://shop_images/KMK-AT_-_5_-_A_Content_Desktop.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -297,11 +280,11 @@
         "show_text_below": true
       }
     },
-    "a_plus_content_mobile_bHUmp8": {
+    "a_plus_content_mobile_WjebyG": {
       "type": "A-plus-Content-mobile",
       "name": "A+ Content Mobile",
       "settings": {
-        "image": "shopify://shop_images/KMS-AT_-_A_Content_-_1_-_Mobile.jpg",
+        "image": "shopify://shop_images/KMK-AT_-_1_-_A_Content_Mobile.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -314,11 +297,11 @@
         "show_text_below": true
       }
     },
-    "a_plus_content_mobile_ELk8RC": {
+    "a_plus_content_mobile_k7A9Fp": {
       "type": "A-plus-Content-mobile",
       "name": "A+ Content Mobile",
       "settings": {
-        "image": "shopify://shop_images/KMS-AT_-_A_Content_-_2_-_Mobile.jpg",
+        "image": "shopify://shop_images/KMK-AT_-_2_-_A_Content_Mobile.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -331,11 +314,11 @@
         "show_text_below": true
       }
     },
-    "a_plus_content_mobile_yBRbnw": {
+    "a_plus_content_mobile_wQBJUk": {
       "type": "A-plus-Content-mobile",
       "name": "A+ Content Mobile",
       "settings": {
-        "image": "shopify://shop_images/KMS-AT_-_A_Content_-_3_-_Mobile.jpg",
+        "image": "shopify://shop_images/KMK-AT_-_3_-_A_Content_Mobile.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -348,11 +331,11 @@
         "show_text_below": true
       }
     },
-    "a_plus_content_mobile_Hprmkp": {
+    "a_plus_content_mobile_DJt4qL": {
       "type": "A-plus-Content-mobile",
       "name": "A+ Content Mobile",
       "settings": {
-        "image": "shopify://shop_images/KMS-AT_-_A_Content_-_4_-_Mobile.jpg",
+        "image": "shopify://shop_images/KMK-AT_-_4_-_A_Content_Mobile.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -365,11 +348,11 @@
         "show_text_below": true
       }
     },
-    "a_plus_content_mobile_bCYaMR": {
+    "a_plus_content_mobile_9kmXaY": {
       "type": "A-plus-Content-mobile",
       "name": "A+ Content Mobile",
       "settings": {
-        "image": "shopify://shop_images/KMS-AT_-_A_Content_-_5_-_Mobile.jpg",
+        "image": "shopify://shop_images/KMK-AT_-_5_-_A_Content_Mobile.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -380,6 +363,78 @@
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": true,
         "show_text_below": true
+      }
+    },
+    "collapsible_content_MdUDC4": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_AbVPJH": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Ist die Markise wasserdicht?",
+            "icon": "question_mark",
+            "row_content": "<p>Nein, der Stoff ist wasserabweisend, kein wasserdichtes Material. Leichter Regen perlt ab. Bei Starkregen oder Dauerregen empfehlen wir, die Markise einzurollen. Primär entwickelt als Sonnenschutz für Balkon & Terrasse.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_GWw3MU": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Kann ich die Markise ohne Bohren montieren?",
+            "icon": "question_mark",
+            "row_content": "<p>Die Klemmmarkise wird komplett ohne Bohren montiert - ideal für Mieter, die keine Löcher in Wände oder Decken bohren dürfen und für Eigentümer, die keine dauerhafte Befestigung wollen. Einfach zwischen Boden und Decke klemmen, fertig.<br/><br/></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_Gp4Jdj": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Wie stabil ist die Markise bei Wind?",
+            "icon": "question_mark",
+            "row_content": "<p>Die Markise ist nach EN 13561 (Windklasse 2) geprüft und hält moderaten Wind stand. Das robuste, pulverbeschichtete Stahlgestell sorgt für Stabilität – bei starkem Wind einfach einkurbeln.<br/><br/></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_BdKQg8": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Wie flexibel ist die Höhe einstellbar?",
+            "icon": "question_mark",
+            "row_content": "<p>Die Teleskopstangen sind von ca. 2,06 m bis 3,00 m höhenverstellbar. Zusätzlich gibt es eine Feinjustierung am Fuß – ideal für unterschiedliche Balkonhöhen und passgenaue Montage.<br/><br/></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_KUVUqM": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Wie reinige und pflege ich die Markise?",
+            "icon": "question_mark",
+            "row_content": "<p>Sehr pflegeleicht: Einfach mit einem feuchten Tuch abwischen. Die PU-Beschichtung reduziert Schmutzanhaftung – kein aufwendiges Waschen nötig, wie bei vielen anderen Markisen.<br/><br/></p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_AbVPJH",
+        "collapsible_row_GWw3MU",
+        "collapsible_row_Gp4Jdj",
+        "collapsible_row_BdKQg8",
+        "collapsible_row_KUVUqM"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "",
+        "container_color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "loox-product-reviews-app-section": {
@@ -410,17 +465,18 @@
   "order": [
     "main",
     "related-products",
-    "17792005117d388bf2",
-    "a_plus_content_desktop_RFExdY",
-    "a_plus_content_desktop_6Vd6dP",
-    "a_plus_content_desktop_piWGBC",
-    "a_plus_content_desktop_a9iT4G",
-    "a_plus_content_desktop_KhgC4r",
-    "a_plus_content_mobile_bHUmp8",
-    "a_plus_content_mobile_ELk8RC",
-    "a_plus_content_mobile_yBRbnw",
-    "a_plus_content_mobile_Hprmkp",
-    "a_plus_content_mobile_bCYaMR",
+    "1779199719e3280b10",
+    "a_plus_content_desktop_JfkcNb",
+    "a_plus_content_desktop_W7kGLw",
+    "a_plus_content_desktop_pzKDVy",
+    "a_plus_content_desktop_ahczzH",
+    "a_plus_content_desktop_3dyRwn",
+    "a_plus_content_mobile_WjebyG",
+    "a_plus_content_mobile_k7A9Fp",
+    "a_plus_content_mobile_wQBJUk",
+    "a_plus_content_mobile_DJt4qL",
+    "a_plus_content_mobile_9kmXaY",
+    "collapsible_content_MdUDC4",
     "loox-product-reviews-app-section"
   ]
 }
