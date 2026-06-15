@@ -32,6 +32,7 @@
       a fallback list of categories if the wanted one is empty/exhausted.
     - Skip any product that's already in the cart (no redundant recs).
     - Skip duplicates inside the recommendation list.
+    - Skip out-of-stock products.
 {%- endcomment -%}
 
 {%- liquid
@@ -236,6 +237,7 @@
       {%- assign id_check = ',' | append: p.id | append: ',' -%}
       {%- if cart_product_ids contains id_check -%}{%- continue -%}{%- endif -%}
       {%- if picked_ids       contains id_check -%}{%- continue -%}{%- endif -%}
+      {%- if p.available == false -%}{%- continue -%}{%- endif -%}
 
       {%- assign chosen = p -%}
       {%- break -%}
