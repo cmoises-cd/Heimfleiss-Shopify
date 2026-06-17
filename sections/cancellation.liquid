@@ -376,16 +376,21 @@
       page: window.location.href,
     };
 
-    // no-cors: the worker receives the payload but does not return
-    // Access-Control-Allow-Origin, so the browser cannot read the response.
-    await fetch(CANCELLATION_WEBHOOK_URL, {
+    const response = await fetch(CANCELLATION_WEBHOOK_URL, {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
         'Content-Type': 'text/plain;charset=UTF-8',
       },
       body: JSON.stringify(payload),
     });
+
+    if (response.status === 429) {
+      throw new Error('rate_limit');
+    }
+
+    if (!response.ok) {
+      throw new Error('request_failed');
+    }
   }
 
   async function handleCancellationSubmit() {
@@ -411,10 +416,15 @@
       );
       form.reset();
     } catch (error) {
+      const errorMessage =
+        error instanceof Error && error.message === 'rate_limit'
+          ? cancellationMessages.rateLimit
+          : cancellationMessages.error;
+
       showCancellationNotifier(
         'error',
         cancellationMessages.errorTitle,
-        cancellationMessages.error
+        errorMessage
       );
     } finally {
       submitBtn.disabled = false;
