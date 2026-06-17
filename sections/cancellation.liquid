@@ -363,20 +363,16 @@
       page: window.location.href,
     };
 
-    const response = await fetch(CANCELLATION_WEBHOOK_URL, {
+    // no-cors: the worker receives the payload but does not return
+    // Access-Control-Allow-Origin, so the browser cannot read the response.
+    await fetch(CANCELLATION_WEBHOOK_URL, {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'text/plain;charset=UTF-8',
       },
       body: JSON.stringify(payload),
     });
-
-    if (!response.ok) {
-      const error = new Error('Request failed');
-      error.status = response.status;
-      throw error;
-    }
-    return response;
   }
 
   async function handleCancellationSubmit() {
@@ -402,11 +398,10 @@
       );
       form.reset();
     } catch (error) {
-      const isRateLimited = error?.status === 429;
       showCancellationNotifier(
         'error',
         cancellationMessages.errorTitle,
-        isRateLimited ? cancellationMessages.rateLimit : cancellationMessages.error
+        cancellationMessages.error
       );
     } finally {
       submitBtn.disabled = false;
