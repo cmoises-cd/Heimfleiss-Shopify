@@ -270,6 +270,7 @@
         "name": "Name",
         "email": "Email",
         "order_number": "Order number",
+        "widerrufsgrund": "Reason for cancellation",
         "send": "Submit cancellation",
         "request_type": "Request type",
         "request_type_value": "Contract cancellation",

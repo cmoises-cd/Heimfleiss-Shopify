@@ -274,6 +274,7 @@
         "name": "Name",
         "email": "E-Mail",
         "order_number": "Bestellnummer",
+        "widerrufsgrund": "Widerrufsgrund",
         "send": "Widerruf absenden",
         "request_type": "Anfragetyp",
         "request_type_value": "Vertragswiderruf",

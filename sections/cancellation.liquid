@@ -270,6 +270,18 @@
           </small>
         {%- endif -%}
       </div>
+      <div class="field">
+        <textarea
+          rows="5"
+          id="CancellationForm-widerrufsgrund"
+          class="text-area field__input"
+          name="contact[{{ 'templates.cancellation.form.widerrufsgrund' | t }}]"
+          placeholder="{{ 'templates.cancellation.form.widerrufsgrund' | t }}"
+        ></textarea>
+        <label class="form__label field__label" for="CancellationForm-widerrufsgrund">
+          {{- 'templates.cancellation.form.widerrufsgrund' | t -}}
+        </label>
+      </div>
       <div class="contact__button">
         <button
           type="button"
@@ -358,6 +370,7 @@
       name: (form.querySelector('#CancellationForm-name')?.value || '').trim(),
       order_number: (form.querySelector('#CancellationForm-order-number')?.value || '').trim(),
       email: (form.querySelector('#CancellationForm-email')?.value || '').trim(),
+      widerrufsgrund: (form.querySelector('#CancellationForm-widerrufsgrund')?.value || '').trim(),
       request_type: (form.querySelector('input[type="hidden"]')?.value || '').trim(),
       source: 'shopify-cancellation',
       page: window.location.href,
