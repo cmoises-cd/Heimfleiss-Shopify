@@ -667,6 +667,17 @@
         "name": "Contact form"
       }
     },
+    "cancellation": {
+      "name": "Cancellation form",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        }
+      },
+      "presets": {
+        "name": "Cancellation form"
+      }
+    },
     "custom-liquid": {
       "name": "Custom Liquid",
       "settings": {

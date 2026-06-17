@@ -1,0 +1,496 @@
+{{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  #CancellationForm-notifier {
+    margin-bottom: 2rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-0.8rem);
+    transition: max-height 0.45s ease, opacity 0.35s ease, transform 0.35s ease, margin-bottom 0.35s ease;
+  }
+
+  #CancellationForm-notifier.cancellation-notifier--visible {
+    max-height: 20rem;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cancellation-notifier__inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1.6rem 1.8rem;
+    border-radius: 0.8rem;
+    border: 0.1rem solid transparent;
+    box-shadow: 0 0.4rem 1.8rem rgba(0, 0, 0, 0.07);
+  }
+
+  .cancellation-notifier__inner--success {
+    background: linear-gradient(135deg, #f2faf4 0%, #e4f4e9 100%);
+    border-color: rgba(66, 132, 69, 0.35);
+    color: rgb(26, 92, 46);
+  }
+
+  .cancellation-notifier__inner--error {
+    background: linear-gradient(135deg, #fff5f5 0%, #fdecec 100%);
+    border-color: rgba(235, 0, 27, 0.25);
+    color: rgb(139, 26, 26);
+  }
+
+  .cancellation-notifier__inner--pending {
+    background: linear-gradient(135deg, #f6f8fb 0%, #eef2f7 100%);
+    border-color: rgba(61, 74, 92, 0.18);
+    color: rgb(61, 74, 92);
+  }
+
+  .cancellation-notifier__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    margin-top: 0.1rem;
+  }
+
+  .cancellation-notifier__icon .icon {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .cancellation-notifier__spinner {
+    width: 2.2rem;
+    height: 2.2rem;
+    border: 0.2rem solid rgba(61, 74, 92, 0.2);
+    border-top-color: rgb(61, 74, 92);
+    border-radius: 50%;
+    animation: cancellation-notifier-spin 0.75s linear infinite;
+  }
+
+  @keyframes cancellation-notifier-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .cancellation-notifier__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cancellation-notifier__title {
+    margin: 0 0 0.4rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .cancellation-notifier__message {
+    margin: 0;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    opacity: 0.92;
+  }
+
+  .cancellation-notifier__close {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    opacity: 0.55;
+    transition: opacity 0.2s ease, background 0.2s ease;
+  }
+
+  .cancellation-notifier__close:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  .cancellation-notifier__close .icon {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {{ section.settings.heading }}
+      </h2>
+    {%- else -%}
+      <h2 class="visually-hidden">{{ 'templates.cancellation.form.title' | t }}</h2>
+    {%- endif -%}
+    {%- liquid
+      assign cancellation_form_class = 'isolate'
+      if settings.animations_reveal_on_scroll
+        assign cancellation_form_class = 'isolate scroll-trigger animate--slide-in'
+      endif
+    -%}
+    {%- form 'contact', id: 'CancellationForm', class: cancellation_form_class -%}
+      <input type="hidden" name="contact[{{ 'templates.cancellation.form.request_type' | t }}]" value="{{ 'templates.cancellation.form.request_type_value' | t }}">
+
+      <div
+        id="CancellationForm-notifier"
+        class="cancellation-notifier{% if form.posted_successfully? or form.errors %} cancellation-notifier--visible{% endif %}"
+        {% unless form.posted_successfully? or form.errors %}hidden{% endunless %}
+        aria-live="polite"
+      >
+        <div
+          class="cancellation-notifier__inner{% if form.posted_successfully? %} cancellation-notifier__inner--success{% elsif form.errors %} cancellation-notifier__inner--error{% endif %}"
+          role="{% if form.errors %}alert{% else %}status{% endif %}"
+          tabindex="-1"
+          {% if form.posted_successfully? or form.errors %}autofocus{% endif %}
+        >
+          <span class="cancellation-notifier__icon" id="CancellationForm-notifier-icon" aria-hidden="true">
+            {%- if form.posted_successfully? -%}
+              {% render 'icon-success' %}
+            {%- elsif form.errors -%}
+              {% render 'icon-error' %}
+            {%- endif -%}
+          </span>
+          <div class="cancellation-notifier__content">
+            <p class="cancellation-notifier__title" id="CancellationForm-notifier-title">
+              {%- if form.posted_successfully? -%}
+                {{ 'templates.cancellation.form.notify_success_title' | t }}
+              {%- elsif form.errors -%}
+                {{ 'templates.cancellation.form.notify_error_title' | t }}
+              {%- endif -%}
+            </p>
+            <p class="cancellation-notifier__message" id="CancellationForm-notifier-message">
+              {%- if form.posted_successfully? -%}
+                {{ 'templates.cancellation.form.post_success' | t }}
+              {%- elsif form.errors -%}
+                {%- if form.errors contains 'email' -%}
+                  {{ form.errors.translated_fields.email | capitalize }}
+                  {{ form.errors.messages.email }}
+                {%- else -%}
+                  {{ 'templates.cancellation.form.error_heading' | t }}
+                {%- endif -%}
+              {%- endif -%}
+            </p>
+          </div>
+          <button
+            type="button"
+            class="cancellation-notifier__close"
+            id="CancellationForm-notifier-close"
+            aria-label="{{ 'accessibility.close' | t }}"
+          >
+            <svg class="icon icon-close" aria-hidden="true" focusable="false" viewBox="0 0 18 17">
+              <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="contact__fields">
+        <div class="field">
+          <input
+            class="field__input"
+            autocomplete="name"
+            type="text"
+            id="CancellationForm-name"
+            name="contact[{{ 'templates.cancellation.form.name' | t }}]"
+            value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+            placeholder="{{ 'templates.cancellation.form.name' | t }}"
+            aria-required="true"
+            required
+          >
+          <label class="field__label" for="CancellationForm-name">
+            {{- 'templates.cancellation.form.name' | t -}}
+            <span aria-hidden="true">*</span>
+          </label>
+        </div>
+        <div class="field">
+          <input
+            class="field__input"
+            type="text"
+            id="CancellationForm-order-number"
+            name="contact[{{ 'templates.cancellation.form.order_number' | t }}]"
+            placeholder="{{ 'templates.cancellation.form.order_number' | t }}"
+            aria-required="true"
+            required
+          >
+          <label class="field__label" for="CancellationForm-order-number">
+            {{- 'templates.cancellation.form.order_number' | t -}}
+            <span aria-hidden="true">*</span>
+          </label>
+        </div>
+      </div>
+      <div class="field field--with-error">
+        <input
+          autocomplete="email"
+          type="email"
+          id="CancellationForm-email"
+          class="field__input"
+          name="contact[email]"
+          spellcheck="false"
+          autocapitalize="off"
+          value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+          aria-required="true"
+          required
+          {% if form.errors contains 'email' %}
+            aria-invalid="true"
+            aria-describedby="CancellationForm-email-error"
+          {% endif %}
+          placeholder="{{ 'templates.cancellation.form.email' | t }}"
+        >
+        <label class="field__label" for="CancellationForm-email">
+          {{- 'templates.cancellation.form.email' | t -}}
+          <span aria-hidden="true">*</span>
+        </label>
+        {%- if form.errors contains 'email' -%}
+          <small class="contact__field-error" id="CancellationForm-email-error">
+            <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+            <span class="form__message">
+              {%- render 'icon-error' -%}
+              {{- form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email -}}
+            </span>
+          </small>
+        {%- endif -%}
+      </div>
+      <div class="contact__button">
+        <button
+          type="button"
+          class="button"
+          id="CancellationForm-submit"
+          onclick="handleCancellationSubmit()"
+        >
+          {{ 'templates.cancellation.form.send' | t }}
+        </button>
+      </div>
+    {%- endform -%}
+  </div>
+</div>
+
+<script>
+  const CANCELLATION_WEBHOOK_URL = 'https://n8n-shopify-cancellation-worker.c-moises.workers.dev';
+
+  const cancellationMessages = {
+    sendingTitle: {{ 'templates.cancellation.form.notify_sending_title' | t | json }},
+    sending: {{ 'templates.cancellation.form.sending' | t | json }},
+    successTitle: {{ 'templates.cancellation.form.notify_success_title' | t | json }},
+    success: {{ 'templates.cancellation.form.post_success' | t | json }},
+    errorTitle: {{ 'templates.cancellation.form.notify_error_title' | t | json }},
+    error: {{ 'templates.cancellation.form.send_error' | t | json }},
+    rateLimit: {{ 'templates.cancellation.form.rate_limit_error' | t | json }},
+  };
+
+  const cancellationNotifierIcons = {
+    success: `{% render 'icon-success' %}`,
+    error: `{% render 'icon-error' %}`,
+    pending: '<span class="cancellation-notifier__spinner"></span>',
+  };
+
+  let cancellationNotifierTimeout;
+
+  function hideCancellationNotifier() {
+    const notifier = document.getElementById('CancellationForm-notifier');
+    if (!notifier) return;
+
+    notifier.classList.remove('cancellation-notifier--visible');
+    window.clearTimeout(cancellationNotifierTimeout);
+
+    window.setTimeout(function () {
+      if (!notifier.classList.contains('cancellation-notifier--visible')) {
+        notifier.hidden = true;
+      }
+    }, 350);
+  }
+
+  function showCancellationNotifier(type, title, message) {
+    const notifier = document.getElementById('CancellationForm-notifier');
+    const inner = notifier?.querySelector('.cancellation-notifier__inner');
+    const icon = document.getElementById('CancellationForm-notifier-icon');
+    const titleEl = document.getElementById('CancellationForm-notifier-title');
+    const messageEl = document.getElementById('CancellationForm-notifier-message');
+    if (!notifier || !inner || !icon || !titleEl || !messageEl) return;
+
+    window.clearTimeout(cancellationNotifierTimeout);
+
+    inner.classList.remove(
+      'cancellation-notifier__inner--success',
+      'cancellation-notifier__inner--error',
+      'cancellation-notifier__inner--pending'
+    );
+    inner.classList.add('cancellation-notifier__inner--' + type);
+    inner.setAttribute('role', type === 'error' ? 'alert' : 'status');
+
+    icon.innerHTML = cancellationNotifierIcons[type] || '';
+    titleEl.textContent = title;
+    messageEl.textContent = message;
+
+    notifier.hidden = false;
+    window.requestAnimationFrame(function () {
+      notifier.classList.add('cancellation-notifier--visible');
+      inner.focus({ preventScroll: true });
+    });
+
+    if (type === 'success') {
+      cancellationNotifierTimeout = window.setTimeout(hideCancellationNotifier, 8000);
+    }
+  }
+
+  async function sendCancellationRequest(form) {
+    const payload = {
+      brand:"Heimfleiss",
+      name: (form.querySelector('#CancellationForm-name')?.value || '').trim(),
+      order_number: (form.querySelector('#CancellationForm-order-number')?.value || '').trim(),
+      email: (form.querySelector('#CancellationForm-email')?.value || '').trim(),
+      request_type: (form.querySelector('input[type="hidden"]')?.value || '').trim(),
+      source: 'shopify-cancellation',
+      page: window.location.href,
+    };
+
+    const response = await fetch(CANCELLATION_WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain;charset=UTF-8',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      const error = new Error('Request failed');
+      error.status = response.status;
+      throw error;
+    }
+    return response;
+  }
+
+  async function handleCancellationSubmit() {
+    const form = document.getElementById('CancellationForm');
+    const submitBtn = document.getElementById('CancellationForm-submit');
+    if (!form || !submitBtn) return;
+
+    if (!form.reportValidity()) return;
+
+    submitBtn.disabled = true;
+    showCancellationNotifier(
+      'pending',
+      cancellationMessages.sendingTitle,
+      cancellationMessages.sending
+    );
+
+    try {
+      await sendCancellationRequest(form);
+      showCancellationNotifier(
+        'success',
+        cancellationMessages.successTitle,
+        cancellationMessages.success
+      );
+      form.reset();
+    } catch (error) {
+      const isRateLimited = error?.status === 429;
+      showCancellationNotifier(
+        'error',
+        cancellationMessages.errorTitle,
+        isRateLimited ? cancellationMessages.rateLimit : cancellationMessages.error
+      );
+    } finally {
+      submitBtn.disabled = false;
+    }
+  }
+
+  document.getElementById('CancellationForm-notifier-close')?.addEventListener('click', hideCancellationNotifier);
+
+  document.getElementById('CancellationForm')?.addEventListener('submit', function (event) {
+    event.preventDefault();
+    handleCancellationSubmit();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.cancellation.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Vertrag widerrufen",
+      "label": "t:sections.cancellation.settings.heading.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.cancellation.presets.name"
+    }
+  ]
+}
+{% endschema %}

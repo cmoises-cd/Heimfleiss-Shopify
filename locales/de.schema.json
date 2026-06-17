@@ -3323,6 +3323,17 @@
       "presets": {
         "name": "Schnelle Bestellliste"
       }
+    },
+    "cancellation": {
+      "name": "Widerrufsformular",
+      "settings": {
+        "heading": {
+          "label": "Überschrift"
+        }
+      },
+      "presets": {
+        "name": "Widerrufsformular"
+      }
     }
   }
 }

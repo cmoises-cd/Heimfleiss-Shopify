@@ -255,6 +255,25 @@
         "error_heading": "Please adjust the following:"
       }
     },
+    "cancellation": {
+      "form": {
+        "title": "Contract cancellation form",
+        "name": "Name",
+        "email": "Email",
+        "order_number": "Order number",
+        "send": "Submit cancellation",
+        "request_type": "Request type",
+        "request_type_value": "Contract cancellation",
+        "post_success": "Your cancellation request has been submitted. We will process it as soon as possible.",
+        "error_heading": "Please adjust the following:",
+        "notify_success_title": "Request sent",
+        "notify_error_title": "Something went wrong",
+        "notify_sending_title": "Sending request...",
+        "sending": "Please wait while we submit your cancellation request.",
+        "send_error": "We could not submit your cancellation request. Please try again later.",
+        "rate_limit_error": "Too many requests. Please wait a moment and try again."
+      }
+    },
     "404": {
       "title": "Page not found",
       "subtext": "404"
