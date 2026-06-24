@@ -51,6 +51,13 @@
             "picker_type": "button"
           }
         },
+        "klip_coupons_klip_app_section_product_Y9whRP": {
+          "type": "shopify://apps/klip-coupons/blocks/klip-app-section-product/df38e221-ede4-4ad4-b47d-56524361a5be",
+          "settings": {
+            "margin_top": 10,
+            "margin_bottom": 10
+          }
+        },
         "188e402c-bc85-40ca-bfc8-08144521bccf": {
           "type": "inventory",
           "settings": {
@@ -114,6 +121,7 @@
         "loox_reviews_loox_rating_t7mUqG",
         "price",
         "variant_picker",
+        "klip_coupons_klip_app_section_product_Y9whRP",
         "188e402c-bc85-40ca-bfc8-08144521bccf",
         "custom_liquid_fqHhzY",
         "buy_buttons",
