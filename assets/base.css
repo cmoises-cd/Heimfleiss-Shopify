@@ -3678,4 +3678,32 @@ details-disclosure > details {
 
 }
 
+
+/* Widerrufsbutton §356a BGB */
+a[href*="widerrufsbutton"] {
+  display: inline-block;
+  margin-top: 12px;
+  background-color: #1a1a1a;
+  color: #ffffff !important;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none !important;
+  letter-spacing: 0.02em;
+  transition: background-color 0.2s ease;
+}
+
+a[href*="widerrufsbutton"]:hover {
+  background-color: #333333;
+  color: #ffffff !important;
+}
+
+
+
+
+
+
+
+
 </style>
