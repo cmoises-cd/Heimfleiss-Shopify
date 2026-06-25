@@ -117,7 +117,7 @@
     "product": {
       "add_to_cart": "In den Warenkorb",
       "description": "Beschreibung",
-      "on_sale": "Frühling-Sale",
+      "on_sale": "Sale",
       "quantity": {
         "label": "Anzahl",
         "input_label": "Anzahl von {{ product }}",
