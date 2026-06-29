@@ -16,7 +16,7 @@
           "type": "title",
           "settings": {
             "show_subtitle": true,
-            "subtitle_text": "Bis zu 80% weniger Rauchentwicklung",
+            "subtitle_text": "Auspacken. Aufpumpen. 15 Minuten später auf dem Wasser.",
             "subtitle_font_family": "heading",
             "subtitle_font_size": 14,
             "subtitle_color": "#707070",
@@ -41,7 +41,9 @@
         },
         "price": {
           "type": "price",
-          "settings": {}
+          "settings": {
+            "show_savings_in_euro": false
+          }
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -105,15 +107,6 @@
             "content": "<p><strong>Lieferzeit und Versandkosten:</strong> Kostenloser Versand innerhalb Deutschlands. Lieferzeit: 1-4 Werktage ab Bestellbestätigung.</p><p><br/><strong>Versanddienstleister:</strong> Versand erfolgt zuverlässig über DHL.<br/><strong>Hinweis:</strong> In Ausnahmefällen kann es zu Verzögerungen kommen. Bei Fragen stehen wir Ihnen gerne zur Verfügung.<br/><strong>Retoure:</strong> Rückgabe innerhalb von 30 Tagen möglich. Rücksendekosten tragen Sie, es sei denn, das Produkt ist mangelhaft. Weitere Details in unseren AGB und der Widerrufsbelehrung.</p>",
             "page": ""
           }
-        },
-        "collapsible_tab_3dcg4z": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "FAQ",
-            "icon": "none",
-            "content": "",
-            "page": ""
-          }
         }
       },
       "block_order": [
@@ -126,8 +119,7 @@
         "buy_buttons",
         "trust_icons_e3Exm9",
         "description_K6Q4Qq",
-        "collapsible_tab_TXXHhe",
-        "collapsible_tab_3dcg4z"
+        "collapsible_tab_TXXHhe"
       ],
       "custom_css": [
         ".product__title > * {margin: 0; font-size: 18px;}",
@@ -174,6 +166,7 @@
       "blocks": {
         "loox_reviews_loox_card_carousel_section_RHPAFf": {
           "type": "shopify://apps/loox-reviews/blocks/loox-card-carousel-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "disabled": true,
           "settings": {
             "maxWidth": 1100,
             "borderRadius": 8,
@@ -186,8 +179,8 @@
             "itemBackgroundColor": "#ffffff",
             "starsColor": "",
             "starsBackgroundColor": "#ffffff",
-            "arrows_backgroundColor": "#FFFFFF",
-            "arrows_iconColor": "#9A9A9A",
+            "arrows_backgroundColor": "#ffffff",
+            "arrows_iconColor": "#9a9a9a",
             "shadow": "offset-dark",
             "border_active": false,
             "border_width": 2,
@@ -207,6 +200,7 @@
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
+        "image": "shopify://shop_images/SUP01-D1_-_1_-_A_Content_Desktop.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -223,6 +217,7 @@
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
+        "image": "shopify://shop_images/SUP01-D1_-_2_-_A_Content_Desktop.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -239,6 +234,7 @@
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
+        "image": "shopify://shop_images/SUP01-D1_-_3_-_A_Content_Desktop.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -255,38 +251,7 @@
       "type": "A-plus-Content-Desktop",
       "name": "A+ Content Desktop",
       "settings": {
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "desktop_content_position": "middle-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "",
-        "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": true,
-        "show_text_below": true
-      }
-    },
-    "a_plus_content_desktop_3dyRwn": {
-      "type": "A-plus-Content-Desktop",
-      "name": "A+ Content Desktop",
-      "settings": {
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "desktop_content_position": "middle-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "",
-        "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": true,
-        "show_text_below": true
-      }
-    },
-    "a_plus_content_mobile_WjebyG": {
-      "type": "A-plus-Content-mobile",
-      "name": "A+ Content Mobile",
-      "settings": {
+        "image": "shopify://shop_images/SUP01-D1_-_4_-_A_Content_Desktop.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -303,6 +268,7 @@
       "type": "A-plus-Content-mobile",
       "name": "A+ Content Mobile",
       "settings": {
+        "image": "shopify://shop_images/SUP01-D1_-_1_-_A_Content_Mobile.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -319,6 +285,7 @@
       "type": "A-plus-Content-mobile",
       "name": "A+ Content Mobile",
       "settings": {
+        "image": "shopify://shop_images/SUP01-D1_-_2_-_A_Content_Mobile.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -335,6 +302,7 @@
       "type": "A-plus-Content-mobile",
       "name": "A+ Content Mobile",
       "settings": {
+        "image": "shopify://shop_images/SUP01-D1_-_3_-_A_Content_Mobile.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -351,6 +319,7 @@
       "type": "A-plus-Content-mobile",
       "name": "A+ Content Mobile",
       "settings": {
+        "image": "shopify://shop_images/SUP01-D1_-_4_-_A_Content_Mobile.jpg",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "desktop_content_position": "middle-center",
@@ -396,8 +365,6 @@
     "a_plus_content_desktop_W7kGLw",
     "a_plus_content_desktop_pzKDVy",
     "a_plus_content_desktop_ahczzH",
-    "a_plus_content_desktop_3dyRwn",
-    "a_plus_content_mobile_WjebyG",
     "a_plus_content_mobile_k7A9Fp",
     "a_plus_content_mobile_wQBJUk",
     "a_plus_content_mobile_DJt4qL",
