@@ -286,6 +286,12 @@
     "collection_list_8eUXJx": {
       "type": "collection-list",
       "blocks": {
+        "featured_collection_j4dAMt": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "sup-board-aufblasbar"
+          }
+        },
         "featured_collection_eCcxF4": {
           "type": "featured_collection",
           "settings": {
@@ -326,12 +332,6 @@
           "type": "featured_collection",
           "settings": {
             "collection": "einkaufs-trolley"
-          }
-        },
-        "featured_collection_7YM7BT": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "schneckenkragen"
           }
         },
         "featured_collection_JMd6AG": {
@@ -378,6 +378,7 @@
         }
       },
       "block_order": [
+        "featured_collection_j4dAMt",
         "featured_collection_eCcxF4",
         "featured_collection_XMzTA4",
         "featured_collection_yi7Npx",
@@ -385,7 +386,6 @@
         "featured_collection_9YheBT",
         "featured_collection_EDDdDU",
         "featured_collection_ixHeg7",
-        "featured_collection_7YM7BT",
         "featured_collection_JMd6AG",
         "featured_collection_a8nWUh",
         "featured_collection_rL6EbJ",
