@@ -147,6 +147,12 @@
     "collection_slider_nhhiTT": {
       "type": "collection-slider",
       "blocks": {
+        "collection_d7wWj3": {
+          "type": "collection",
+          "settings": {
+            "collection": "sup-board-aufblasbar"
+          }
+        },
         "collection_tXMD9Y": {
           "type": "collection",
           "settings": {
@@ -245,6 +251,7 @@
         }
       },
       "block_order": [
+        "collection_d7wWj3",
         "collection_tXMD9Y",
         "collection_Y83LAY",
         "collection_di6V38",
