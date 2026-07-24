@@ -588,6 +588,15 @@
 <script>
   const CANCELLATION_WEBHOOK_URL = 'https://n8n-shopify-cancellation-worker.c-moises.workers.dev';
   const CANCELLATION_MAX_IMAGES = 5;
+  const CANCELLATION_IMAGE_MAX_SIZE = 960;
+  const CANCELLATION_IMAGE_QUALITY = 0.55;
+  const CANCELLATION_MAX_PAYLOAD_BYTES = 512 * 1024;
+  const CANCELLATION_FALLBACK_MESSAGES = {
+    payloadTooLarge:
+      document.documentElement.lang === 'de'
+        ? 'Deine Bilder sind zu groß zum Senden. Bitte entferne einige Fotos oder wähle kleinere und versuche es erneut.'
+        : 'Your images are too large to send. Please remove some photos or choose smaller ones and try again.',
+  };
 
   const cancellationMessages = {
     sendingTitle: {{ 'templates.cancellation.form.notify_sending_title' | t | json }},
@@ -597,6 +606,7 @@
     errorTitle: {{ 'templates.cancellation.form.notify_error_title' | t | json }},
     error: {{ 'templates.cancellation.form.send_error' | t | json }},
     rateLimit: {{ 'templates.cancellation.form.rate_limit_error' | t | json }},
+    payloadTooLarge: {{ 'templates.cancellation.form.payload_too_large_error' | t | json }},
     removeImage: {{ 'templates.cancellation.form.images_remove' | t | json }},
     imagesLimit: {{ 'templates.cancellation.form.images_limit_error' | t | json }},
   };
@@ -803,32 +813,165 @@
     updateCancellationImagesDropzone();
   }
 
-  function readFileAsBase64(file) {
+  function loadImageFromFile(file) {
     return new Promise(function (resolve, reject) {
-      const reader = new FileReader();
-      reader.onload = function () {
-        const result = String(reader.result || '');
-        const base64 = result.includes(',') ? result.split(',')[1] : result;
-        resolve({
-          name: file.name,
-          type: file.type,
-          size: file.size,
-          data: base64,
-        });
+      const objectUrl = URL.createObjectURL(file);
+      const img = new Image();
+
+      img.onload = function () {
+        URL.revokeObjectURL(objectUrl);
+        resolve(img);
       };
-      reader.onerror = function () {
-        reject(new Error('Failed to read file'));
+
+      img.onerror = function () {
+        URL.revokeObjectURL(objectUrl);
+        reject(createCancellationError('Failed to load image', 413));
       };
-      reader.readAsDataURL(file);
+
+      img.src = objectUrl;
     });
+  }
+
+  function canvasToJpegBlob(canvas, quality) {
+    return new Promise(function (resolve) {
+      if (!canvas.toBlob) {
+        resolve(null);
+        return;
+      }
+
+      canvas.toBlob(
+        function (blob) {
+          resolve(blob);
+        },
+        'image/jpeg',
+        quality
+      );
+    });
+  }
+
+  function createCancellationError(message, status) {
+    const error = new Error(message);
+    error.status = status;
+    return error;
+  }
+
+  function getPayloadByteLength(text) {
+    if (typeof TextEncoder !== 'undefined') {
+      return new TextEncoder().encode(text).length;
+    }
+
+    return unescape(encodeURIComponent(text)).length;
+  }
+
+  function getScaledImageSize(width, height, maxSide) {
+    const longestSide = Math.max(width, height);
+    if (longestSide <= maxSide) {
+      return { width: width, height: height };
+    }
+
+    const scale = maxSide / longestSide;
+    return {
+      width: Math.max(1, Math.round(width * scale)),
+      height: Math.max(1, Math.round(height * scale)),
+    };
+  }
+
+  async function compressImageToBase64(file, maxSide, quality) {
+    const img = await loadImageFromFile(file);
+    const sourceWidth = img.naturalWidth || img.width;
+    const sourceHeight = img.naturalHeight || img.height;
+
+    if (!sourceWidth || !sourceHeight) {
+      throw createCancellationError('Invalid image', 413);
+    }
+
+    const scaled = getScaledImageSize(sourceWidth, sourceHeight, maxSide);
+    const canvas = document.createElement('canvas');
+    canvas.width = scaled.width;
+    canvas.height = scaled.height;
+
+    const context = canvas.getContext('2d', { alpha: false });
+    if (!context) {
+      throw createCancellationError('Canvas unavailable', 413);
+    }
+
+    context.fillStyle = '#ffffff';
+    context.fillRect(0, 0, scaled.width, scaled.height);
+    context.drawImage(img, 0, 0, scaled.width, scaled.height);
+
+    let dataUrl = '';
+    const blob = await canvasToJpegBlob(canvas, quality);
+
+    if (blob) {
+      dataUrl = await new Promise(function (resolve, reject) {
+        const reader = new FileReader();
+        reader.onload = function () {
+          resolve(String(reader.result || ''));
+        };
+        reader.onerror = function () {
+          reject(createCancellationError('Failed to read compressed image', 413));
+        };
+        reader.readAsDataURL(blob);
+      });
+    } else {
+      dataUrl = canvas.toDataURL('image/jpeg', quality);
+    }
+
+    if (!dataUrl || dataUrl.indexOf('base64,') === -1) {
+      throw createCancellationError('Image compression failed', 413);
+    }
+
+    const base64 = dataUrl.split('base64,')[1];
+
+    return {
+      name: file.name.replace(/\.[^.]+$/, '') + '.jpg',
+      type: 'image/jpeg',
+      size: Math.round((base64.length * 3) / 4),
+      data: base64,
+    };
   }
 
   async function getCancellationImages() {
     const images = [];
+    const imageCount = Math.max(cancellationSelectedImages.length, 1);
+    const targetBytesPerImage = Math.floor((CANCELLATION_MAX_PAYLOAD_BYTES * 0.7) / imageCount);
+
     for (let i = 0; i < cancellationSelectedImages.length; i++) {
-      const imageData = await readFileAsBase64(cancellationSelectedImages[i]);
-      images.push(imageData);
+      const originalFile = cancellationSelectedImages[i];
+      let quality = CANCELLATION_IMAGE_QUALITY;
+      let maxSide = CANCELLATION_IMAGE_MAX_SIZE;
+      let compressedImage = null;
+      let attempt = 0;
+
+      try {
+        while (attempt < 8) {
+          compressedImage = await compressImageToBase64(originalFile, maxSide, quality);
+
+          if (compressedImage.size <= targetBytesPerImage) {
+            break;
+          }
+
+          if (quality > 0.35) {
+            quality = Math.max(0.35, quality - 0.1);
+          } else if (maxSide > 480) {
+            maxSide = Math.max(480, Math.round(maxSide * 0.75));
+          } else {
+            break;
+          }
+
+          attempt += 1;
+        }
+      } catch (error) {
+        throw createCancellationError('Payload too large', 413);
+      }
+
+      if (!compressedImage || compressedImage.size > targetBytesPerImage) {
+        throw createCancellationError('Payload too large', 413);
+      }
+
+      images.push(compressedImage);
     }
+
     return images;
   }
 
@@ -857,20 +1000,59 @@
       payload.images = await getCancellationImages();
     }
 
-    const response = await fetch(CANCELLATION_WEBHOOK_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain;charset=UTF-8',
-      },
-      body: JSON.stringify(payload),
-    });
+    const hasImages = payload.images.length > 0;
+    const requestBody = JSON.stringify(payload);
+    const payloadBytes = getPayloadByteLength(requestBody);
+
+    if (payloadBytes > CANCELLATION_MAX_PAYLOAD_BYTES) {
+      throw createCancellationError('Payload too large', 413);
+    }
+
+    let response;
+
+    try {
+      response = await fetch(CANCELLATION_WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=UTF-8',
+        },
+        body: requestBody,
+      });
+    } catch (networkError) {
+      // Cross-origin 413 responses often hide status and look like a network failure.
+      if (hasImages || payloadBytes > 200 * 1024) {
+        throw createCancellationError('Payload too large', 413);
+      }
+      throw networkError;
+    }
 
     if (!response.ok) {
-      const error = new Error('Request failed');
-      error.status = response.status;
-      throw error;
+      const responseText = await response.text().catch(function () {
+        return '';
+      });
+      const isPayloadTooLarge =
+        response.status === 413 ||
+        /413|request entity too large|content too large/i.test(responseText);
+
+      throw createCancellationError(
+        isPayloadTooLarge ? 'Payload too large' : 'Request failed',
+        isPayloadTooLarge ? 413 : response.status
+      );
     }
+
     return response;
+  }
+
+  function getCancellationErrorMessage(error) {
+    if (error?.status === 429) {
+      return cancellationMessages.rateLimit;
+    }
+
+    if (error?.status === 413) {
+      return cancellationMessages.payloadTooLarge || CANCELLATION_FALLBACK_MESSAGES.payloadTooLarge;
+    }
+
+    return cancellationMessages.error;
   }
 
   async function handleCancellationSubmit() {
@@ -898,11 +1080,10 @@
       clearImagePreview();
       updateCancellationConditionalFields();
     } catch (error) {
-      const isRateLimited = error?.status === 429;
       showCancellationNotifier(
         'error',
         cancellationMessages.errorTitle,
-        isRateLimited ? cancellationMessages.rateLimit : cancellationMessages.error
+        getCancellationErrorMessage(error)
       );
     } finally {
       submitBtn.disabled = false;

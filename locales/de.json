@@ -296,7 +296,8 @@
         "notify_sending_title": "Anfrage wird gesendet...",
         "sending": "Bitte warte, während wir deinen Widerruf übermitteln.",
         "send_error": "Dein Widerruf konnte nicht übermittelt werden. Bitte versuche es später erneut.",
-        "rate_limit_error": "Zu viele Anfragen. Bitte warte einen Moment und versuche es erneut."
+        "rate_limit_error": "Zu viele Anfragen. Bitte warte einen Moment und versuche es erneut.",
+        "payload_too_large_error": "Deine Bilder sind zu groß zum Senden. Bitte entferne einige Fotos oder wähle kleinere und versuche es erneut."
       }
     }
   },
