@@ -131,6 +131,216 @@
     width: 1.4rem;
     height: 1.4rem;
   }
+
+  .cancellation-conditional {
+    margin-bottom: 1.5rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .cancellation-conditional {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .cancellation-images__hint {
+    margin: 0 0 1.2rem;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    opacity: 0.8;
+  }
+
+  .cancellation-images__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10.4rem, 1fr));
+    gap: 1.2rem;
+  }
+
+  .cancellation-images__dropzone {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    aspect-ratio: 1;
+    width: 100%;
+    padding: 1.2rem;
+    border: 0.15rem dashed rgba(var(--color-foreground), 0.22);
+    border-radius: 1.2rem;
+    background:
+      linear-gradient(
+        160deg,
+        rgba(var(--color-foreground), 0.035) 0%,
+        rgba(var(--color-foreground), 0.01) 100%
+      );
+    color: rgba(var(--color-foreground), 0.75);
+    text-align: center;
+    cursor: pointer;
+    transition:
+      border-color 0.25s ease,
+      background 0.25s ease,
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      color 0.25s ease;
+  }
+
+  .cancellation-images__dropzone:hover,
+  .cancellation-images__dropzone:focus-within {
+    border-color: rgba(var(--color-foreground), 0.45);
+    background: rgba(var(--color-foreground), 0.05);
+    color: rgb(var(--color-foreground));
+    transform: translateY(-0.15rem);
+    box-shadow: 0 0.8rem 2rem rgba(var(--color-foreground), 0.08);
+  }
+
+  .cancellation-images__dropzone.is-dragover {
+    border-color: rgba(var(--color-foreground), 0.55);
+    border-style: solid;
+    background: rgba(var(--color-foreground), 0.07);
+    transform: scale(1.02);
+    box-shadow: 0 1rem 2.4rem rgba(var(--color-foreground), 0.12);
+  }
+
+  .cancellation-images__input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .cancellation-images__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 1.2rem;
+    background: rgba(var(--color-background), 0.85);
+    box-shadow: 0 0.2rem 0.8rem rgba(var(--color-foreground), 0.08);
+    transition: transform 0.25s ease;
+  }
+
+  .cancellation-images__dropzone:hover .cancellation-images__icon,
+  .cancellation-images__dropzone.is-dragover .cancellation-images__icon {
+    transform: translateY(-0.2rem) scale(1.04);
+  }
+
+  .cancellation-images__icon svg {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .cancellation-images__title {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .cancellation-images__subtitle {
+    margin: 0;
+    font-size: 1.2rem;
+    line-height: 1.3;
+    opacity: 0.7;
+  }
+
+  .cancellation-images__preview {
+    display: contents;
+  }
+
+  .cancellation-images__preview-item {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 1.2rem;
+    border: 0.1rem solid rgba(var(--color-foreground), 0.1);
+    background: rgba(var(--color-foreground), 0.04);
+    box-shadow: 0 0.4rem 1.4rem rgba(var(--color-foreground), 0.06);
+    animation: cancellation-image-in 0.35s ease both;
+  }
+
+  @keyframes cancellation-image-in {
+    from {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .cancellation-images__preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+
+  .cancellation-images__preview-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .cancellation-images__remove {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    color: rgb(40, 40, 40);
+    box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  }
+
+  .cancellation-images__preview-item:hover .cancellation-images__remove,
+  .cancellation-images__remove:focus-visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .cancellation-images__remove:hover {
+    background: #fff;
+  }
+
+  .cancellation-images__remove svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  @media (hover: none) {
+    .cancellation-images__remove {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .cancellation-select {
+    margin-bottom: 1.5rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .cancellation-select {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .cancellation-select > .form__label {
+    display: block;
+    margin-bottom: 0.8rem;
+  }
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
@@ -270,18 +480,97 @@
           </small>
         {%- endif -%}
       </div>
-      <div class="field">
-        <textarea
-          rows="5"
-          id="CancellationForm-widerrufsgrund"
-          class="text-area field__input"
-          name="contact[{{ 'templates.cancellation.form.widerrufsgrund' | t }}]"
-          placeholder="{{ 'templates.cancellation.form.widerrufsgrund' | t }}"
-        ></textarea>
-        <label class="form__label field__label" for="CancellationForm-widerrufsgrund">
+      <div class="cancellation-select">
+        <label class="form__label" for="CancellationForm-widerrufsgrund">
           {{- 'templates.cancellation.form.widerrufsgrund' | t -}}
         </label>
+        <div class="select">
+          <select
+            id="CancellationForm-widerrufsgrund"
+            class="select__select"
+            name="contact[{{ 'templates.cancellation.form.widerrufsgrund' | t }}]"
+          >
+            <option value="" selected disabled hidden>
+              {{- 'templates.cancellation.form.widerrufsgrund_placeholder' | t -}}
+            </option>
+            <option value="{{ 'templates.cancellation.form.reason_storno' | t }}" data-return-type="cancellation">
+              {{- 'templates.cancellation.form.reason_storno' | t -}}
+            </option>
+            <option value="{{ 'templates.cancellation.form.reason_product_problem' | t }}" data-return-type="problem_with_item">
+              {{- 'templates.cancellation.form.reason_product_problem' | t -}}
+            </option>
+            <option value="{{ 'templates.cancellation.form.reason_not_suitable' | t }}" data-return-type="not_needed">
+              {{- 'templates.cancellation.form.reason_not_suitable' | t -}}
+            </option>
+          </select>
+          {% render 'icon-caret' %}
+        </div>
       </div>
+
+      <div
+        id="CancellationForm-storno-fields"
+        class="cancellation-conditional"
+        hidden
+      >
+        <div class="field">
+          <textarea
+            rows="4"
+            id="CancellationForm-reason-detail"
+            class="text-area field__input"
+            name="contact[{{ 'templates.cancellation.form.reason_detail' | t }}]"
+            placeholder="{{ 'templates.cancellation.form.reason_detail' | t }}"
+          ></textarea>
+          <label class="form__label field__label" for="CancellationForm-reason-detail">
+            {{- 'templates.cancellation.form.reason_detail' | t -}}
+          </label>
+        </div>
+      </div>
+
+      <div
+        id="CancellationForm-product-fields"
+        class="cancellation-conditional cancellation-images"
+        hidden
+      >
+        <div class="field">
+          <textarea
+            rows="4"
+            id="CancellationForm-defect-detail"
+            class="text-area field__input"
+            name="contact[{{ 'templates.cancellation.form.defect_detail' | t }}]"
+            placeholder="{{ 'templates.cancellation.form.defect_detail' | t }}"
+          ></textarea>
+          <label class="form__label field__label" for="CancellationForm-defect-detail">
+            {{- 'templates.cancellation.form.defect_detail' | t -}}
+          </label>
+        </div>
+        <p class="cancellation-images__hint" id="CancellationForm-images-hint">
+          {{ 'templates.cancellation.form.images_hint' | t }}
+        </p>
+        <div class="cancellation-images__grid">
+          <label class="cancellation-images__dropzone" id="CancellationForm-images-dropzone" for="CancellationForm-images">
+            <span class="cancellation-images__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" focusable="false">
+                <path d="M12 16V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M8.5 10.5 12 7l3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5 17.5V19a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="cancellation-images__title">{{ 'templates.cancellation.form.images_add' | t }}</span>
+            <span class="cancellation-images__subtitle">{{ 'templates.cancellation.form.images_drop' | t }}</span>
+            <input
+              type="file"
+              id="CancellationForm-images"
+              class="cancellation-images__input"
+              name="contact[images]"
+              accept="image/*"
+              multiple
+              aria-describedby="CancellationForm-images-hint"
+            >
+          </label>
+          <div id="CancellationForm-images-preview" class="cancellation-images__preview" aria-live="polite"></div>
+        </div>
+      </div>
+
       <div class="contact__button">
         <button
           type="button"
@@ -298,6 +587,7 @@
 
 <script>
   const CANCELLATION_WEBHOOK_URL = 'https://n8n-shopify-cancellation-worker.c-moises.workers.dev';
+  const CANCELLATION_MAX_IMAGES = 5;
 
   const cancellationMessages = {
     sendingTitle: {{ 'templates.cancellation.form.notify_sending_title' | t | json }},
@@ -307,6 +597,8 @@
     errorTitle: {{ 'templates.cancellation.form.notify_error_title' | t | json }},
     error: {{ 'templates.cancellation.form.send_error' | t | json }},
     rateLimit: {{ 'templates.cancellation.form.rate_limit_error' | t | json }},
+    removeImage: {{ 'templates.cancellation.form.images_remove' | t | json }},
+    imagesLimit: {{ 'templates.cancellation.form.images_limit_error' | t | json }},
   };
 
   const cancellationNotifierIcons = {
@@ -364,17 +656,206 @@
     }
   }
 
+  function getSelectedReturnType() {
+    const select = document.getElementById('CancellationForm-widerrufsgrund');
+    if (!select) return '';
+
+    const selectedOption = select.options[select.selectedIndex];
+    return selectedOption?.dataset?.returnType || '';
+  }
+
+  let cancellationSelectedImages = [];
+
+  function syncCancellationImagesInput() {
+    const imagesInput = document.getElementById('CancellationForm-images');
+    if (!imagesInput) return;
+
+    const dataTransfer = new DataTransfer();
+    for (let i = 0; i < cancellationSelectedImages.length; i++) {
+      dataTransfer.items.add(cancellationSelectedImages[i]);
+    }
+    imagesInput.files = dataTransfer.files;
+  }
+
+  function clearImagePreview() {
+    const preview = document.getElementById('CancellationForm-images-preview');
+    if (preview) {
+      preview.querySelectorAll('img').forEach(function (img) {
+        if (img.src.startsWith('blob:')) {
+          URL.revokeObjectURL(img.src);
+        }
+      });
+      preview.innerHTML = '';
+    }
+
+    cancellationSelectedImages = [];
+    syncCancellationImagesInput();
+    updateCancellationImagesDropzone();
+  }
+
+  function updateCancellationConditionalFields() {
+    const returnType = getSelectedReturnType();
+    const stornoFields = document.getElementById('CancellationForm-storno-fields');
+    const productFields = document.getElementById('CancellationForm-product-fields');
+    const reasonDetail = document.getElementById('CancellationForm-reason-detail');
+    const defectDetail = document.getElementById('CancellationForm-defect-detail');
+
+    const showStorno = returnType === 'cancellation';
+    const showProduct = returnType === 'problem_with_item';
+
+    if (stornoFields) stornoFields.hidden = !showStorno;
+    if (productFields) productFields.hidden = !showProduct;
+
+    if (!showStorno && reasonDetail) {
+      reasonDetail.value = '';
+    }
+
+    if (!showProduct) {
+      if (defectDetail) defectDetail.value = '';
+      clearImagePreview();
+    }
+  }
+
+  function updateImagePreview() {
+    const preview = document.getElementById('CancellationForm-images-preview');
+    if (!preview) return;
+
+    preview.querySelectorAll('img').forEach(function (img) {
+      if (img.src.startsWith('blob:')) {
+        URL.revokeObjectURL(img.src);
+      }
+    });
+    preview.innerHTML = '';
+
+    for (let i = 0; i < cancellationSelectedImages.length; i++) {
+      const file = cancellationSelectedImages[i];
+      const item = document.createElement('div');
+      item.className = 'cancellation-images__preview-item';
+
+      const img = document.createElement('img');
+      img.alt = file.name;
+      img.src = URL.createObjectURL(file);
+
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'cancellation-images__remove';
+      removeBtn.setAttribute('aria-label', cancellationMessages.removeImage);
+      removeBtn.dataset.imageIndex = String(i);
+      removeBtn.innerHTML =
+        '<svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2.5 2.5l7 7M9.5 2.5l-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+
+      item.appendChild(img);
+      item.appendChild(removeBtn);
+      preview.appendChild(item);
+    }
+  }
+
+  function updateCancellationImagesDropzone() {
+    const dropzone = document.getElementById('CancellationForm-images-dropzone');
+    if (!dropzone) return;
+
+    dropzone.hidden = cancellationSelectedImages.length >= CANCELLATION_MAX_IMAGES;
+  }
+
+  function addCancellationImages(fileList) {
+    const incomingFiles = Array.from(fileList || []).filter(function (file) {
+      return file.type.startsWith('image/');
+    });
+    const previousCount = cancellationSelectedImages.length;
+
+    for (let i = 0; i < incomingFiles.length; i++) {
+      if (cancellationSelectedImages.length >= CANCELLATION_MAX_IMAGES) {
+        break;
+      }
+
+      const file = incomingFiles[i];
+      const alreadyAdded = cancellationSelectedImages.some(function (existingFile) {
+        return (
+          existingFile.name === file.name &&
+          existingFile.size === file.size &&
+          existingFile.lastModified === file.lastModified
+        );
+      });
+
+      if (!alreadyAdded) {
+        cancellationSelectedImages.push(file);
+      }
+    }
+
+    const skippedCount = previousCount + incomingFiles.length - cancellationSelectedImages.length;
+    if (skippedCount > 0 && cancellationSelectedImages.length >= CANCELLATION_MAX_IMAGES) {
+      showCancellationNotifier(
+        'error',
+        cancellationMessages.errorTitle,
+        cancellationMessages.imagesLimit
+      );
+    }
+
+    syncCancellationImagesInput();
+    updateImagePreview();
+    updateCancellationImagesDropzone();
+  }
+
+  function removeCancellationImage(index) {
+    cancellationSelectedImages.splice(index, 1);
+    syncCancellationImagesInput();
+    updateImagePreview();
+    updateCancellationImagesDropzone();
+  }
+
+  function readFileAsBase64(file) {
+    return new Promise(function (resolve, reject) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        const result = String(reader.result || '');
+        const base64 = result.includes(',') ? result.split(',')[1] : result;
+        resolve({
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          data: base64,
+        });
+      };
+      reader.onerror = function () {
+        reject(new Error('Failed to read file'));
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function getCancellationImages() {
+    const images = [];
+    for (let i = 0; i < cancellationSelectedImages.length; i++) {
+      const imageData = await readFileAsBase64(cancellationSelectedImages[i]);
+      images.push(imageData);
+    }
+    return images;
+  }
+
   async function sendCancellationRequest(form) {
+    const returnType = getSelectedReturnType();
     const payload = {
-      brand:"Heimfleiss",
+      brand: 'Heimfleiss',
       name: (form.querySelector('#CancellationForm-name')?.value || '').trim(),
       order_number: (form.querySelector('#CancellationForm-order-number')?.value || '').trim(),
       email: (form.querySelector('#CancellationForm-email')?.value || '').trim(),
       widerrufsgrund: (form.querySelector('#CancellationForm-widerrufsgrund')?.value || '').trim(),
+      return_type: returnType,
+      reason_detail: '',
+      images: [],
       request_type: (form.querySelector('input[type="hidden"]')?.value || '').trim(),
       source: 'shopify-cancellation',
       page: window.location.href,
     };
+
+    if (returnType === 'cancellation') {
+      payload.reason_detail = (form.querySelector('#CancellationForm-reason-detail')?.value || '').trim();
+    }
+
+    if (returnType === 'problem_with_item') {
+      payload.reason_detail = (form.querySelector('#CancellationForm-defect-detail')?.value || '').trim();
+      payload.images = await getCancellationImages();
+    }
 
     const response = await fetch(CANCELLATION_WEBHOOK_URL, {
       method: 'POST',
@@ -384,13 +865,12 @@
       body: JSON.stringify(payload),
     });
 
-    if (response.status === 429) {
-      throw new Error('rate_limit');
-    }
-
     if (!response.ok) {
-      throw new Error('request_failed');
+      const error = new Error('Request failed');
+      error.status = response.status;
+      throw error;
     }
+    return response;
   }
 
   async function handleCancellationSubmit() {
@@ -415,16 +895,14 @@
         cancellationMessages.success
       );
       form.reset();
+      clearImagePreview();
+      updateCancellationConditionalFields();
     } catch (error) {
-      const errorMessage =
-        error instanceof Error && error.message === 'rate_limit'
-          ? cancellationMessages.rateLimit
-          : cancellationMessages.error;
-
+      const isRateLimited = error?.status === 429;
       showCancellationNotifier(
         'error',
         cancellationMessages.errorTitle,
-        errorMessage
+        isRateLimited ? cancellationMessages.rateLimit : cancellationMessages.error
       );
     } finally {
       submitBtn.disabled = false;
@@ -433,10 +911,55 @@
 
   document.getElementById('CancellationForm-notifier-close')?.addEventListener('click', hideCancellationNotifier);
 
+  document.getElementById('CancellationForm-widerrufsgrund')?.addEventListener('change', updateCancellationConditionalFields);
+
+  const cancellationImagesInput = document.getElementById('CancellationForm-images');
+  const cancellationImagesDropzone = document.getElementById('CancellationForm-images-dropzone');
+  const cancellationImagesPreview = document.getElementById('CancellationForm-images-preview');
+
+  cancellationImagesInput?.addEventListener('change', function (event) {
+    addCancellationImages(event.target.files);
+    event.target.value = '';
+  });
+
+  cancellationImagesPreview?.addEventListener('click', function (event) {
+    const removeBtn = event.target.closest('.cancellation-images__remove');
+    if (!removeBtn) return;
+
+    const index = Number(removeBtn.dataset.imageIndex);
+    if (!Number.isNaN(index)) {
+      removeCancellationImage(index);
+    }
+  });
+
+  if (cancellationImagesDropzone) {
+    ['dragenter', 'dragover'].forEach(function (eventName) {
+      cancellationImagesDropzone.addEventListener(eventName, function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        cancellationImagesDropzone.classList.add('is-dragover');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach(function (eventName) {
+      cancellationImagesDropzone.addEventListener(eventName, function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        cancellationImagesDropzone.classList.remove('is-dragover');
+      });
+    });
+
+    cancellationImagesDropzone.addEventListener('drop', function (event) {
+      addCancellationImages(event.dataTransfer?.files);
+    });
+  }
+
   document.getElementById('CancellationForm')?.addEventListener('submit', function (event) {
     event.preventDefault();
     handleCancellationSubmit();
   });
+
+  updateCancellationConditionalFields();
 </script>
 
 {% schema %}
@@ -451,8 +974,8 @@
     {
       "type": "inline_richtext",
       "id": "heading",
-      "default": "Vertrag widerrufen",
-      "label": "t:sections.cancellation.settings.heading.label"
+      "default": "Widerruf",
+      "label": "Heading"
     },
     {
       "type": "select",
