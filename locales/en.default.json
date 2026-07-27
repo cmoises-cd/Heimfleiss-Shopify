@@ -274,7 +274,7 @@
         "widerrufsgrund_placeholder": "Please select (optional)",
         "reason_storno": "Cancellation",
         "reason_product_problem": "Problem with a product",
-        "reason_not_suitable": "Doesn't fit / Don't need / Don't like",
+        "reason_not_suitable": "Doesn't fit / Don't need / Don't like it",
         "reason_detail": "Additional details about the cancellation",
         "defect_detail": "Description of the problem",
         "images_hint": "Upload up to 5 photos (optional) that show the problem.",
