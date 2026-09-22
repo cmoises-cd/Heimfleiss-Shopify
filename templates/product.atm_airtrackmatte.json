@@ -104,7 +104,7 @@
           "settings": {
             "heading": "Versand & Retoure",
             "icon": "none",
-            "content": "<p><strong>Lieferzeit und Versandkosten:</strong> Kostenloser Versand innerhalb Deutschlands. Lieferzeit: 1-4 Werktage ab Bestellbestätigung.</p><p><br/><strong>Versanddienstleister:</strong> Versand erfolgt zuverlässig über DHL.<br/><strong>Hinweis:</strong> In Ausnahmefällen kann es zu Verzögerungen kommen. Bei Fragen stehen wir Ihnen gerne zur Verfügung.<br/><strong>Retoure:</strong> Rückgabe innerhalb von 30 Tagen möglich. Rücksendekosten tragen Sie, es sei denn, das Produkt ist mangelhaft. Weitere Details in unseren AGB und der Widerrufsbelehrung.</p>",
+            "content": "<p><strong>Lieferzeit und Versandkosten:</strong> Kostenloser Versand innerhalb Deutschlands. Lieferzeit: 1-4 Werktage ab Bestellbestätigung.<br/><br/><strong>Versanddienstleister:</strong> Versand erfolgt zuverlässig über DHL.<br/><br/><strong>Hinweis:</strong> In Ausnahmefällen kann es zu Verzögerungen kommen. Bei Fragen stehen wir Ihnen gerne zur Verfügung.<br/><br/><strong>Retoure:</strong> Rückgabe innerhalb von 30 Tagen möglich. Rücksendekosten tragen Sie, es sei denn, das Produkt ist mangelhaft. Weitere Details in unseren AGB und der Widerrufsbelehrung.</p>",
             "page": ""
           }
         },
@@ -113,7 +113,7 @@
           "settings": {
             "heading": "FAQ",
             "icon": "none",
-            "content": "",
+            "content": "<h3>Reicht eine 10 cm Matte auch für Flickflack und Salto?</h3><p>Ja, wenn das Element schon grundsätzlich sitzt. Die 10 cm Luft plus der Rückschub aus dem Drop-Stitch Gewebe federn die Landung deutlich besser ab als jede Schaumstoffmatte in dieser Höhe. Für das allererste Erlernen eines Saltos gehört trotzdem ein Trainer daneben – die Matte ersetzt keine Hilfestellung.</p><h3>Kann ich die Matte in der Wohnung benutzen, ohne dass sich die Nachbarn beschweren?</h3><p>Die Luftkammer schluckt den Aufprall, es knallt also deutlich weniger als beim Sprung auf den blanken Boden. Im Altbau oder über einer Wohnung solltest du trotzdem mit weniger Druck arbeiten (2 bis 3 psi) und auf große Sprünge verzichten. Für Rolle, Rad, Dehnen und Yoga ist das kein Thema.</p><h3>Und wenn doch mal ein Loch drin ist?</h3><p>Dann flickst du es selbst. Das Reparaturset mit Ventilschlüssel liegt bei, dazu findest du die Anleitung im Handbuch. Kleben, trocknen lassen, weiterturnen – die Matte ist deshalb kein Fall für den Sperrmüll.</p>",
             "page": ""
           }
         }
