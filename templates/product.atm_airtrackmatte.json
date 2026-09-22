@@ -16,7 +16,7 @@
           "type": "title",
           "settings": {
             "show_subtitle": true,
-            "subtitle_text": "Bis zu 80% weniger Rauchentwicklung",
+            "subtitle_text": "In unter 1 Min. aufgepumpt",
             "subtitle_font_family": "heading",
             "subtitle_font_size": 14,
             "subtitle_color": "#707070",
@@ -41,7 +41,9 @@
         },
         "price": {
           "type": "price",
-          "settings": {}
+          "settings": {
+            "show_savings_in_euro": false
+          }
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -186,8 +188,8 @@
             "itemBackgroundColor": "#ffffff",
             "starsColor": "",
             "starsBackgroundColor": "#ffffff",
-            "arrows_backgroundColor": "#FFFFFF",
-            "arrows_iconColor": "#9A9A9A",
+            "arrows_backgroundColor": "#ffffff",
+            "arrows_iconColor": "#9a9a9a",
             "shadow": "offset-dark",
             "border_active": false,
             "border_width": 2,
