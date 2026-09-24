@@ -1,7 +1,9 @@
 class KlipCouponPrice {
   constructor(section) {
     this.section = section;
+    this.discountType = null;
     this.percentage = null;
+    this.fixedCents = null;
     this.renderState = null;
     this.updateQueued = false;
     this.moneyFormat = section.getAttribute('data-money-format') || '{{amount}}';
@@ -52,6 +54,101 @@ class KlipCouponPrice {
     return parseFloat(match[1].replace(',', '.'));
   }
 
+  readFixedCents(couponBox) {
+    const text = couponBox.textContent || '';
+    const euroBefore = text.match(/(?:€|EUR)\s*(\d+(?:[.\s]\d{3})*(?:[.,]\d+)?)/i);
+    const euroAfter = text.match(/(\d+(?:[.\s]\d{3})*(?:[.,]\d+)?)\s*(?:€|EUR)/i);
+    const amountText = euroBefore ? euroBefore[1] : (euroAfter ? euroAfter[1] : null);
+
+    if (!amountText) {
+      return null;
+    }
+
+    return this.parseAmountToCents(amountText);
+  }
+
+  parseAmountToCents(amountText) {
+    let normalized = amountText.replace(/\s/g, '');
+    const lastComma = normalized.lastIndexOf(',');
+    const lastDot = normalized.lastIndexOf('.');
+
+    if (lastComma !== -1 && lastDot !== -1) {
+      if (lastComma > lastDot) {
+        normalized = normalized.replace(/\./g, '').replace(',', '.');
+      } else {
+        normalized = normalized.replace(/,/g, '');
+      }
+    } else if (lastComma !== -1) {
+      const digitsAfterComma = normalized.length - lastComma - 1;
+
+      if (digitsAfterComma === 3) {
+        normalized = normalized.replace(/,/g, '');
+      } else {
+        normalized = normalized.replace(',', '.');
+      }
+    } else if (lastDot !== -1) {
+      const digitsAfterDot = normalized.length - lastDot - 1;
+
+      if (digitsAfterDot === 3) {
+        normalized = normalized.replace(/\./g, '');
+      }
+    }
+
+    const amount = parseFloat(normalized);
+
+    if (Number.isNaN(amount)) {
+      return null;
+    }
+
+    return Math.round(amount * 100);
+  }
+
+  rememberDiscount(couponBox) {
+    const detectedPercentage = this.readPercentage(couponBox);
+
+    if (detectedPercentage !== null) {
+      this.discountType = 'percentage';
+      this.percentage = detectedPercentage;
+      this.fixedCents = null;
+      return;
+    }
+
+    const detectedFixedCents = this.readFixedCents(couponBox);
+
+    if (detectedFixedCents !== null) {
+      this.discountType = 'fixed';
+      this.fixedCents = detectedFixedCents;
+      this.percentage = null;
+    }
+  }
+
+  hasRememberedDiscount() {
+    if (this.discountType === 'percentage' && this.percentage !== null) {
+      return true;
+    }
+
+    if (this.discountType === 'fixed' && this.fixedCents !== null) {
+      return true;
+    }
+
+    return false;
+  }
+
+  calculateDiscountedPrice(originalPrice) {
+    if (this.discountType === 'percentage') {
+      const discountAmount = Math.floor(originalPrice * this.percentage / 100);
+      return originalPrice - discountAmount;
+    }
+
+    const discountedPrice = originalPrice - this.fixedCents;
+
+    if (discountedPrice < 0) {
+      return 0;
+    }
+
+    return discountedPrice;
+  }
+
   isCouponChecked(couponBoxes) {
     for (let index = 0; index < couponBoxes.length; index++) {
       const checkbox = couponBoxes[index].querySelector('input[type="checkbox"]');
@@ -68,23 +165,21 @@ class KlipCouponPrice {
     const couponBoxes = this.findCouponBoxes();
 
     if (couponBoxes.length === 0) {
+      this.discountType = null;
       this.percentage = null;
+      this.fixedCents = null;
       this.removeCustomPrice();
       return;
     }
 
     for (let index = 0; index < couponBoxes.length; index++) {
-      const detectedPercentage = this.readPercentage(couponBoxes[index]);
-
-      if (detectedPercentage !== null) {
-        this.percentage = detectedPercentage;
-      }
+      this.rememberDiscount(couponBoxes[index]);
     }
 
     const priceElement = this.section.querySelector('[id^="price-"] .price[data-price-cents]');
     const checkboxIsChecked = this.isCouponChecked(couponBoxes);
 
-    if (!checkboxIsChecked || this.percentage === null || !priceElement) {
+    if (!checkboxIsChecked || !this.hasRememberedDiscount() || !priceElement) {
       this.removeCustomPrice();
       return;
     }
@@ -96,14 +191,14 @@ class KlipCouponPrice {
       return;
     }
 
-    const discountAmount = Math.floor(originalPrice * this.percentage / 100);
-    const discountedPrice = originalPrice - discountAmount;
+    const discountedPrice = this.calculateDiscountedPrice(originalPrice);
+    const discountKey = this.discountType + ':' + (this.discountType === 'fixed' ? this.fixedCents : this.percentage);
 
-    this.renderCustomPrice(priceElement, originalPrice, discountedPrice, this.percentage);
+    this.renderCustomPrice(priceElement, originalPrice, discountedPrice, discountKey);
   }
 
-  renderCustomPrice(priceElement, originalPrice, discountedPrice, percentage) {
-    const nextState = originalPrice + '|' + discountedPrice + '|' + percentage;
+  renderCustomPrice(priceElement, originalPrice, discountedPrice, discountKey) {
+    const nextState = originalPrice + '|' + discountedPrice + '|' + discountKey;
     const existingPrice = priceElement.querySelector('.klip-coupon-price');
 
     if (existingPrice && this.renderState === nextState) {
