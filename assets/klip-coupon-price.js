@@ -223,30 +223,43 @@ class KlipCouponPrice {
 
       customPrice.appendChild(originalPriceElement);
       customPrice.appendChild(discountedPriceElement);
-      priceElement.appendChild(customPrice);
+
+      const saleBadge = priceElement.querySelector('.price__badge-sale');
+
+      if (saleBadge) {
+        priceElement.insertBefore(customPrice, saleBadge);
+      } else {
+        priceElement.appendChild(customPrice);
+      }
     }
 
     const originalPriceElement = customPrice.querySelector('.klip-coupon-price__original');
     const discountedPriceElement = customPrice.querySelector('.klip-coupon-price__discounted');
 
     originalPriceElement.textContent = this.formatMoney(originalPrice);
-    discountedPriceElement.textContent = 'Von ' + this.formatMoney(discountedPrice);
+    discountedPriceElement.textContent = this.formatMoney(discountedPrice);
   }
 
   removeCustomPrice() {
     this.renderState = null;
 
+    const customPrices = this.section.querySelectorAll('.klip-coupon-price');
+
+    for (let index = 0; index < customPrices.length; index++) {
+      const customPrice = customPrices[index];
+      const priceElement = customPrice.closest('.price');
+
+      customPrice.remove();
+
+      if (priceElement) {
+        priceElement.classList.remove('price--klip-coupon');
+      }
+    }
+
     const priceElements = this.section.querySelectorAll('.price.price--klip-coupon');
 
     for (let index = 0; index < priceElements.length; index++) {
-      const priceElement = priceElements[index];
-      const customPrice = priceElement.querySelector('.klip-coupon-price');
-
-      priceElement.classList.remove('price--klip-coupon');
-
-      if (customPrice) {
-        customPrice.remove();
-      }
+      priceElements[index].classList.remove('price--klip-coupon');
     }
   }
 

@@ -31,9 +31,12 @@
     }
 
     #MainProduct-{{ section.id }} .price--klip-coupon > .price__container,
-    #MainProduct-{{ section.id }} .price--klip-coupon > .price__badge-sale,
     #MainProduct-{{ section.id }} .price--klip-coupon > .price__badge-sold-out {
       display: none;
+    }
+
+    #MainProduct-{{ section.id }} .price--klip-coupon > .price__badge-sale {
+      display: inline-block;
     }
 
     #MainProduct-{{ section.id }} .klip-coupon-price {
@@ -41,6 +44,7 @@
       align-items: baseline;
       flex-wrap: wrap;
       gap: 1rem;
+      width: 100%;
     }
 
     #MainProduct-{{ section.id }} .klip-coupon-price .price-item {
