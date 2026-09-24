@@ -2,6 +2,10 @@
   id="MainProduct-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
   data-section="{{ section.id }}"
+  {%- if request.page_type == 'product' -%}
+    data-klip-coupon-price
+    data-money-format="{% if settings.currency_code_enabled %}{{ shop.money_with_currency_format | escape }}{% else %}{{ shop.money_format | escape }}{% endif %}"
+  {%- endif -%}
 >
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
@@ -25,10 +29,35 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+
+    #MainProduct-{{ section.id }} .price--klip-coupon > .price__container,
+    #MainProduct-{{ section.id }} .price--klip-coupon > .price__badge-sale,
+    #MainProduct-{{ section.id }} .price--klip-coupon > .price__badge-sold-out {
+      display: none;
+    }
+
+    #MainProduct-{{ section.id }} .klip-coupon-price {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    #MainProduct-{{ section.id }} .klip-coupon-price .price-item {
+      margin: 0;
+    }
+
+    #MainProduct-{{ section.id }} .klip-coupon-price__original {
+      color: #d73f63;
+      font-size: 1.3rem;
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  {%- if request.page_type == 'product' -%}
+    <script src="{{ 'klip-coupon-price.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
   {%- if product.quantity_price_breaks_configured? -%}
     <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>

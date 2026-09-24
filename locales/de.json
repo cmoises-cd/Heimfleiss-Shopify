@@ -278,7 +278,7 @@
         "widerrufsgrund_placeholder": "Bitte auswählen (optional)",
         "reason_storno": "Storno",
         "reason_product_problem": "Problem mit einem Produkt",
-        "reason_not_suitable": "Passt/Brauche/Gefällt nicht",
+        "reason_not_suitable": "Passt nicht / Brauche nicht / Gefällt nicht",
         "reason_detail": "Weitere Angaben zum Storno",
         "defect_detail": "Beschreibung des Problems",
         "images_hint": "Lade bis zu 5 Fotos hoch (optional), die das Problem zeigen.",
