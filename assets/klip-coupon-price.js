@@ -192,13 +192,24 @@ class KlipCouponPrice {
     }
 
     const discountedPrice = this.calculateDiscountedPrice(originalPrice);
+    const crossedOutPrice = this.getCrossedOutPrice(priceElement, originalPrice);
     const discountKey = this.discountType + ':' + (this.discountType === 'fixed' ? this.fixedCents : this.percentage);
 
-    this.renderCustomPrice(priceElement, originalPrice, discountedPrice, discountKey);
+    this.renderCustomPrice(priceElement, originalPrice, discountedPrice, crossedOutPrice, discountKey);
   }
 
-  renderCustomPrice(priceElement, originalPrice, discountedPrice, discountKey) {
-    const nextState = originalPrice + '|' + discountedPrice + '|' + discountKey;
+  getCrossedOutPrice(priceElement, originalPrice) {
+    const compareAtCents = parseInt(priceElement.getAttribute('data-compare-at-cents'), 10);
+
+    if (!Number.isNaN(compareAtCents) && compareAtCents > originalPrice) {
+      return compareAtCents;
+    }
+
+    return originalPrice;
+  }
+
+  renderCustomPrice(priceElement, originalPrice, discountedPrice, crossedOutPrice, discountKey) {
+    const nextState = originalPrice + '|' + discountedPrice + '|' + crossedOutPrice + '|' + discountKey;
     const existingPrice = priceElement.querySelector('.klip-coupon-price');
 
     this.updateSavingsBadge(priceElement, originalPrice, discountedPrice);
@@ -238,7 +249,7 @@ class KlipCouponPrice {
     const originalPriceElement = customPrice.querySelector('.klip-coupon-price__original');
     const discountedPriceElement = customPrice.querySelector('.klip-coupon-price__discounted');
 
-    originalPriceElement.textContent = this.formatMoney(originalPrice);
+    originalPriceElement.textContent = this.formatMoney(crossedOutPrice);
     discountedPriceElement.textContent = this.formatMoney(discountedPrice);
   }
 
