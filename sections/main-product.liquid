@@ -55,6 +55,12 @@
       color: #d73f63;
       font-size: 1.3rem;
     }
+
+    @media screen and (min-width: 750px) {
+      #MainProduct-{{ section.id }} .klip-coupon-price__original {
+        font-size: 1.6rem;
+      }
+    }
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
