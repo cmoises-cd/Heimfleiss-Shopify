@@ -49,6 +49,7 @@
     {%- if show_badges %} price--show-badge{% endif -%}
   "
   data-price-cents="{{ price }}"
+  data-compare-at-cents="{{ compare_at_price | default: 0 }}"
 >
   <div class="price__container">
     <div class="price__regular">

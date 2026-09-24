@@ -201,6 +201,8 @@ class KlipCouponPrice {
     const nextState = originalPrice + '|' + discountedPrice + '|' + discountKey;
     const existingPrice = priceElement.querySelector('.klip-coupon-price');
 
+    this.updateSavingsBadge(priceElement, originalPrice, discountedPrice);
+
     if (existingPrice && this.renderState === nextState) {
       priceElement.classList.add('price--klip-coupon');
       return;
@@ -240,6 +242,61 @@ class KlipCouponPrice {
     discountedPriceElement.textContent = this.formatMoney(discountedPrice);
   }
 
+  updateSavingsBadge(priceElement, originalPrice, discountedPrice) {
+    const badge = priceElement.querySelector('.price__badge-sale');
+
+    if (!badge) {
+      return;
+    }
+
+    if (!badge.hasAttribute('data-original-savings')) {
+      badge.setAttribute('data-original-savings', badge.textContent);
+    }
+
+    const originalSavingsText = badge.getAttribute('data-original-savings') || '';
+
+    if (originalSavingsText.trim().indexOf('Spare') !== 0) {
+      return;
+    }
+
+    const compareAtCents = parseInt(priceElement.getAttribute('data-compare-at-cents'), 10);
+    let baselinePrice = originalPrice;
+
+    if (!Number.isNaN(compareAtCents) && compareAtCents > originalPrice) {
+      baselinePrice = compareAtCents;
+    }
+
+    const totalSaved = baselinePrice - discountedPrice;
+
+    if (totalSaved <= 0) {
+      badge.textContent = originalSavingsText;
+      return;
+    }
+
+    badge.textContent = 'Spare ' + this.formatMoney(totalSaved);
+  }
+
+  restoreSavingsBadge(priceElement) {
+    if (!priceElement) {
+      return;
+    }
+
+    const badge = priceElement.querySelector('.price__badge-sale');
+
+    if (!badge) {
+      return;
+    }
+
+    const originalSavingsText = badge.getAttribute('data-original-savings');
+
+    if (!originalSavingsText) {
+      return;
+    }
+
+    badge.textContent = originalSavingsText;
+    badge.removeAttribute('data-original-savings');
+  }
+
   removeCustomPrice() {
     this.renderState = null;
 
@@ -253,6 +310,7 @@ class KlipCouponPrice {
 
       if (priceElement) {
         priceElement.classList.remove('price--klip-coupon');
+        this.restoreSavingsBadge(priceElement);
       }
     }
 
@@ -260,6 +318,7 @@ class KlipCouponPrice {
 
     for (let index = 0; index < priceElements.length; index++) {
       priceElements[index].classList.remove('price--klip-coupon');
+      this.restoreSavingsBadge(priceElements[index]);
     }
   }
 
